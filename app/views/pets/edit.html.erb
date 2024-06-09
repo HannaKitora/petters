@@ -1,0 +1,28 @@
+<h1>Pets#edit</h1>
+
+<% if @pet.errors.any? %>
+  <%= @pet.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @pet.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+        <%= form_with model: @pet do |f| %>
+          <label for="inputName">名前</label>
+          <br>
+          <%= f.text_field :name, autofocus: true, id:"inputName"%>
+          <br>
+          <label for="inputKind">種類</label>
+          <%= f.text_field :kind, autofocus: true, id:"inputKind" %>
+          <br>
+          <label for="inputCaption">説明</label>
+          <%= f.text_field :caption, autofocus: true, id:"inputCaption" %>
+          <br>
+          <%= f.submit "Update Pet" %>
+        <% end %>
+        
+        <%= link_to "Show", pet_path(@pet.id) %>
+        |
+        <%= link_to "Back", pets_path %>
