@@ -1,14 +1,80 @@
 <h1>Pets</h1>
 
-<% @pets.each do |pet| %>
-  <div>
-    <P>名前：<%= pet.name %></P>
-    <%= image_tag pet.get_image %>
-    <p>投稿ユーザー画像 
-    <!--ユーザー画像-->
-    </p>
-    <P>投稿者：<%= pet.user.name %></P>
-    <p>種類：<%= pet.kind %></p>
-    <p>説明：<%= pet.caption %></p>
-  </div>
-<% end %>
+  <% if user_signed_in? %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th scope="col">name</th>
+            <th scope="col">kind</th>
+            <th scope="col">caption</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pets.each do |pet| %>
+            <tr>
+              <th scope="row">
+                <%= link_to pet_path(pet.id) do %>
+                  <%= image_tag pet.get_image(200,200) %>
+                <% end %>
+              </th>
+              <td>
+                <%= pet.name %>
+              </td>
+              <td>
+                <%= pet.kind %>
+              </td>
+              <td>
+                <%= pet.caption %>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <%= link_to user_path(pet.user.id) do%>
+                  <%= image_tag pet.user.get_profile_image(50,50) %>
+                <% end %>
+              </th>
+              <th scope="row">
+                <%= link_to user_path(pet.user.id) do%>
+                  <%= user.name %>
+                <% end %>
+              </th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+　<% else %>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th></th>
+            <th scope="col">name</th>
+            <th scope="col">kind</th>
+            <th scope="col">caption</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pets.each do |pet| %>
+            <tr>
+              <th scope="row">
+                <%= link_to pet_path(pet.id) do %>
+                  <%= image_tag pet.get_image(200,200) %>
+                <% end %>
+              </th>
+              <td>
+                <%= pet.name %>
+              </td>
+              <td>
+                <%= pet.kind %>
+              </td>
+              <td>
+                <%= pet.caption %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  
+  <% end %>
+

@@ -1,14 +1,17 @@
-<h1>Pets#new</h1>
-<p>Find me in app/views/pets/new.html.erb</p>
+<h1>Post</h1>
 
 <%= form_with model: @pet do |f| %>
-  <h4>画像</h4>
+  <h4>image</h4>
   <%= f.file_field :image, accept: "image/*" %>
-  <h4>ペットの名前</h4>
+
+  <h4>pet's name</h4>
   <%= f.text_field :name %>
-  <h4>ペットの種類</h4>
+
+  <h4>kind</h4>
   <%= f.text_field :kind %>
-  <h4>説明</h4>
+
+  <h4>caption</h4>
   <%= f.text_area :caption %>
+
   <%= f.submit '投稿' %>
 <% end %>

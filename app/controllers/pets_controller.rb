@@ -18,7 +18,6 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
-    @pet =@pet.user
   end
 
   def edit

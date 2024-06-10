@@ -1,0 +1,28 @@
+<h1>Events#edit</h1>
+
+<% if @event.errors.any? %>
+  <%= @event.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% @event.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+        <%= form_with model: @event do |f| %>
+          <label for="inputName">Title</label>
+          <br>
+          <%= f.text_field :name, autofocus: true, id:"inputName"%>
+          <br>
+          <label for="inputPrice">Price</label>
+          <%= f.text_field :price, autofocus: true, id:"inputPrice" %>
+          <br>
+          <label for="inputDetail">説明</label>
+          <%= f.text_field :detail, autofocus: true, id:"inputDetail" %>
+          <br>
+          <%= f.submit "Update Event" %>
+        <% end %>
+        
+        <%= link_to "Show", event_path(@event.id) %>
+        |
+        <%= link_to "Back", events_path %>

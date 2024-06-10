@@ -1,2 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+      <h2>User</h2>
+        
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th scope="col">name</th>
+                <th scope="col">kind</th>
+                <th scope="col">caption</th>
+              </tr>
+            </thead>
+            
+            <tbody>
+              <% @pets.each do |pet| %>
+                <tr>
+                  <th scope="row">
+                    <%= link_to pet_path(pet.id) do %>
+                      <%= image_tag pet.get_image(200,200) %>
+                    <% end %>
+                  </th>
+                  <td>
+                    <%= link_to pet.name, pet_path(pet.id) %>
+                  </td>
+                  <td>
+                    <%= pet.kind %>
+                  </td>
+                  <td>
+                    <%= pet.caption %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+  </div>
+</div>

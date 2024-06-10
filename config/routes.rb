@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
-  get 'users/edit'
-  resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
-
-  devise_for :users
   root to: 'homes#top'
-  
+  devise_for :users
+  resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
+  resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
+
+
+  # get 'events/new'
+  # get 'events/index'
+  # get 'events/edit'
+  # get 'events/destroy'
+  # get 'events/show'
+  # get 'users/index'
+  # get 'users/show'
+  # get 'users/edit'
   # get 'pets/new'
   # get 'pets/index'
   # get 'pets/show'
