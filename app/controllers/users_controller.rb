@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @pets = Pet.find(params[:id])
+    @pets = Pet.all
   end
 
   def edit

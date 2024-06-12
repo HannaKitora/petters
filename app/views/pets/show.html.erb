@@ -15,3 +15,21 @@
     <%= link_to "Destroy", pet_path(@pet.id), method: :delete, "data-confirm" =>"Are you sure?" %>
   <% end %>
 </div>
+
+<div>
+  <p>Comment counts：<%= @pet.comments.count %></p>
+  <% @pet.comments.each do |comment| %>
+    <p><%= image_tag comment.user.get_profile_image %></p>
+    <%= comment.user.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <% if comment.user == current_user %>
+      <%= link_to "Delete", pet_comment_path(comment.pet, comment), method: :delete %>
+    <% end %>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [@pet, @comment] do |f| %>
+    <%= f.text_area :comment, rows: '5', placeholder: "Comment here" %>
+    <%= f.submit "Create" %>
+  <% end %>
+</div>

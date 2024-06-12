@@ -15,7 +15,7 @@
             <tr>
               <th scope="row">
                 <%= link_to pet_path(pet.id) do %>
-                  <%= image_tag pet.get_image(200,200) %>
+                  <%= image_tag pet.get_image %>
                 <% end %>
               </th>
               <td>
@@ -31,12 +31,12 @@
             <tr>
               <th scope="row">
                 <%= link_to user_path(pet.user.id) do%>
-                  <%= image_tag pet.user.get_profile_image(50,50) %>
+                  <%= image_tag pet.user.get_profile_image %>
                 <% end %>
               </th>
               <th scope="row">
                 <%= link_to user_path(pet.user.id) do%>
-                  <%= user.name %>
+                  <%= pet.user.name %>
                 <% end %>
               </th>
             </tr>
@@ -59,7 +59,7 @@
             <tr>
               <th scope="row">
                 <%= link_to pet_path(pet.id) do %>
-                  <%= image_tag pet.get_image(200,200) %>
+                  <%= image_tag pet.get_image %>
                 <% end %>
               </th>
               <td>
@@ -71,6 +71,9 @@
               <td>
                 <%= pet.caption %>
               </td>
+            </tr>
+            <tr>
+              <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id) %>
             </tr>
           <% end %>
         </tbody>
