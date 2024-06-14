@@ -1,83 +1,52 @@
 <h1>Pets</h1>
 
   <% if user_signed_in? %>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th scope="col">name</th>
-            <th scope="col">kind</th>
-            <th scope="col">caption</th>
-          </tr>
-        </thead>
-        <tbody>
+ 
+        <div>
           <% @pets.each do |pet| %>
-            <tr>
-              <th scope="row">
+              <div class="row">
                 <%= link_to pet_path(pet.id) do %>
                   <%= image_tag pet.get_image %>
                 <% end %>
-              </th>
-              <td>
+              </div>
+              <div>
                 <%= pet.name %>
-              </td>
-              <td>
                 <%= pet.kind %>
-              </td>
-              <td>
                 <%= pet.caption %>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
+              </div>
+              <div class="row">
                 <%= link_to user_path(pet.user.id) do%>
                   <%= image_tag pet.user.get_profile_image %>
                 <% end %>
-              </th>
-              <th scope="row">
+              </div>
+              <div class="row">
                 <%= link_to user_path(pet.user.id) do%>
                   <%= pet.user.name %>
                 <% end %>
-              </th>
-            </tr>
+              </div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
 
 　<% else %>
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th scope="col">name</th>
-            <th scope="col">kind</th>
-            <th scope="col">caption</th>
-          </tr>
-        </thead>
-        <tbody>
+        <div>
           <% @pets.each do |pet| %>
-            <tr>
-              <th scope="row">
+
+              <div class="row">
                 <%= link_to pet_path(pet.id) do %>
                   <%= image_tag pet.get_image %>
                 <% end %>
-              </th>
-              <td>
+              </div>
+              <div>
                 <%= pet.name %>
-              </td>
-              <td>
                 <%= pet.kind %>
-              </td>
-              <td>
                 <%= pet.caption %>
-              </td>
-            </tr>
-            <tr>
-              <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id) %>
-            </tr>
+              </div>
+              <div>
+                <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id) %>
+              </div>
           <% end %>
-        </tbody>
-      </table>
+        </div>
   
   <% end %>
 
+<%= paginate @pets %>

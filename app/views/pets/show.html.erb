@@ -11,7 +11,6 @@
   
   <% if @pet.user == current_user %>
     <%= link_to "Edit", edit_pet_path(@pet.id) %>
-
     <%= link_to "Destroy", pet_path(@pet.id), method: :delete, "data-confirm" =>"Are you sure?" %>
   <% end %>
 </div>
@@ -26,7 +25,22 @@
       <%= link_to "Delete", pet_comment_path(comment.pet, comment), method: :delete %>
     <% end %>
   <% end %>
+    
+  <% if @pet.favorited_by?(current_user) %>
+    <p>
+      <%= link_to pet_favorite_path(@pet), method: :delete do %>
+        ♥<%= @pet.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to pet_favorite_path(@pet), method: :post do %>
+        ♡<%= @pet.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
 </div>
+
 <div>
   <%= form_with model: [@pet, @comment] do |f| %>
     <%= f.text_area :comment, rows: '5', placeholder: "Comment here" %>

@@ -3,6 +3,8 @@ class Pet < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   belongs_to :pet
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
   validates :image, presence: true
 
@@ -13,6 +15,10 @@ class Pet < ApplicationRecord
     else
       image
     end
+  end
+    
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
   
 end

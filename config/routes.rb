@@ -12,9 +12,10 @@ Rails.application.routes.draw do
   get "/homes/about" => "homes#about", as: "about"
  
   resources :pets, only: [:new, :create, :index, :show, :destroy] do
+    resource :favorite, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
   end
-  resources :users, only: [:show, :index]
+  resources :users, only: [:show, :index, :edit, :update]
   resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
   resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
   resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show]

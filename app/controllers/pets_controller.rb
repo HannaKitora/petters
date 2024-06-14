@@ -11,7 +11,7 @@ class PetsController < ApplicationController
   end
 
   def index
-    @pets = Pet.all
+    @pets = Pet.page(params[:page]).per(10)
     @pet = Pet.new
     @user = current_user
   end

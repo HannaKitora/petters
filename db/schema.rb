@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_12_142321) do
+ActiveRecord::Schema.define(version: 2024_06_14_130443) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2024_06_12_142321) do
   end
 
   create_table "comments", force: :cascade do |t|
+    t.text "comment_content"
+    t.integer "user_id"
+    t.integer "pet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -61,6 +64,13 @@ ActiveRecord::Schema.define(version: 2024_06_12_142321) do
     t.string "name"
     t.text "detail"
     t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "pet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
