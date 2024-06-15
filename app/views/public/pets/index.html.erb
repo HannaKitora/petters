@@ -4,26 +4,24 @@
  
         <div>
           <% @pets.each do |pet| %>
-              <div class="row">
+              <p>
                 <%= link_to pet_path(pet.id) do %>
                   <%= image_tag pet.get_image %>
                 <% end %>
-              </div>
-              <div>
+              </p>
                 <%= pet.name %>
                 <%= pet.kind %>
                 <%= pet.caption %>
-              </div>
-              <div class="row">
+              <p>
                 <%= link_to user_path(pet.user.id) do%>
                   <%= image_tag pet.user.get_profile_image %>
                 <% end %>
-              </div>
-              <div class="row">
+              </p>
+              <p>
                 <%= link_to user_path(pet.user.id) do%>
                   <%= pet.user.name %>
                 <% end %>
-              </div>
+              </p>
           <% end %>
         </div>
 

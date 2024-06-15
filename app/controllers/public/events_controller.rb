@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class Public::EventsController < ApplicationController
   
   def new
     @event = Event.new

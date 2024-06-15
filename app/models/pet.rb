@@ -2,9 +2,9 @@ class Pet < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
-  belongs_to :pet
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  
   
   validates :image, presence: true
 

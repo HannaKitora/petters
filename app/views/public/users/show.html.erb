@@ -2,7 +2,7 @@
 
 <div>
   <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
+  <%= image_tag @user.get_profile_image %>
   <% if @user == current_user %>
     <p><%= link_to "edit profile", edit_user_path(@user) %></p>
   <% end %>

@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Public::CommentsController < ApplicationController
   
   def create
     pet = Pet.find(params[:pet_id])
@@ -15,7 +15,11 @@ class CommentsController < ApplicationController
   
   private
   
-  def pet_params
-    params.require(:comment).permit(:comment)
+  # def pet_params
+  #   params.require(:comment).permit(:comment)
+  # end
+  
+  def comment_params
+    params.require(:comment).permit(:comment_content, :pet_id)
   end
 end

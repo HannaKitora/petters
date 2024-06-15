@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class Public::FavoritesController < ApplicationController
   
   def create
     pet = Pet.find(params[:pet_id])

@@ -1,4 +1,4 @@
-class EntriesController < ApplicationController
+class Public::EntriesController < ApplicationController
   def new
   end
 

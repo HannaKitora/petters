@@ -6,16 +6,19 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
   end
-
-  devise_for :users
-  root to: 'homes#top'
-  get "/homes/about" => "homes#about", as: "about"
+  
+  scope module: :public do
+    devise_for :users
+    root to: 'homes#top'
+    get "/homes/about" => "homes#about", as: "about"
  
-  resources :pets, only: [:new, :create, :index, :show, :destroy] do
-    resource :favorite, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :pets, only: [:new, :create, :index, :show, :destroy] do
+      resource :favorite, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
+    resources :users, only: [:show, :index, :edit, :update]
   end
-  resources :users, only: [:show, :index, :edit, :update]
+  
   resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
   resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
   resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show]
