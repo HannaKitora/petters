@@ -3,6 +3,7 @@
 <div>
   <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image %>
+  <p><%= @user.introduction %></p>
   <% if @user == current_user %>
     <p><%= link_to "edit profile", edit_user_path(@user) %></p>
   <% end %>
@@ -19,13 +20,13 @@
                     <% end %>
                   </div>
                   <div>
-                    <%= link_to pet.name, pet_path(pet.id) %>
-                    <%= pet.kind %>
-                    <%= pet.caption %>
+                    <p><%= link_to pet.name, pet_path(pet.id) %></p>
+                    <p><%= pet.kind %></p>
+                    <p><%= pet.caption %></p>
                   </div>
-                  <div>
+                  <p>
                     <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id) %>
-                  </div>
+                  </p>
 
               <% end %>
           </div>

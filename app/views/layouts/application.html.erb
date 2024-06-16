@@ -15,7 +15,7 @@
     <header>
       <% if user_signed_in? %>
         <li>
-          <%= link_to 'ホーム', root_path %>
+          <%= link_to 'マイページ', user_path(current_user) %>
         </li>
         <li>
           <%= link_to 'タイムライン', pets_path %>

@@ -11,19 +11,22 @@ Rails.application.routes.draw do
     devise_for :users
     root to: 'homes#top'
     get "/homes/about" => "homes#about", as: "about"
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
  
     resources :pets, only: [:new, :create, :index, :show, :destroy] do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
     resources :users, only: [:show, :index, :edit, :update]
+    resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
+    resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
+    resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show]
+    get 'entries/confirm'
+    get 'entries/thanks'
   end
   
-  resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
-  resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
-  resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show]
-  get 'entries/confirm'
-  get 'entries/thanks'
+
   
   # devise_for :admins
   # get 'entries/new'
