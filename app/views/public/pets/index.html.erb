@@ -9,19 +9,23 @@
                   <%= image_tag pet.get_image %>
                 <% end %>
               </p>
-                <%= pet.name %>
-                <%= pet.kind %>
-                <%= pet.caption %>
+              <%= pet.name %>
+              <%= pet.kind %>
+              <%= pet.caption %>
+                
+              <% if pet.user.present? %>
               <p>
                 <%= link_to user_path(pet.user.id) do%>
                   <%= image_tag pet.user.get_profile_image %>
                 <% end %>
               </p>
+             
               <p>
-                <%= link_to user_path(pet.user.id) do%>
+                <%= link_to user_path(pet.user) do%>
                   <%= pet.user.name %>
                 <% end %>
               </p>
+              <% end %>
           <% end %>
         </div>
 

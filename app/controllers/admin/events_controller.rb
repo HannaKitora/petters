@@ -1,9 +1,24 @@
-class Public::EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
   
+  def new
+    @event = Event.new
+  end
+  
+  def create
+    @event = Event.new(event_params)
+    @event.save
+    redirect_to events_path(params[:id])
+  end
+
   def index
     @events = Event.all
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    render_to event_path
+  end
+  
   def show
     @event = Event.find(params[:id])
   end
@@ -17,6 +32,12 @@ class Public::EventsController < ApplicationController
       flash.now[:notice]
       render :edit
     end
+  end
+
+  def destroy
+    event = Event.find(params[:id])
+    event.destroy
+    redirect_to events_path
   end
   
   private

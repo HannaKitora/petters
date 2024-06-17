@@ -13,7 +13,7 @@ class Public::PetsController < ApplicationController
   def index
     @pets = Pet.page(params[:page])
     @pet = Pet.new
-    @user = current_user
+ 
   end
 
   def show
@@ -53,4 +53,7 @@ class Public::PetsController < ApplicationController
     params.require(:pet).permit(:name, :image, :kind, :caption)
   end
   
+  def user_params
+    params.require(:user).permit(:name, :profile_image, :introduction)
+  end
 end

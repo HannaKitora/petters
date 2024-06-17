@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
+    resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
   end
   
   scope module: :public do
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:show, :index, :edit, :update]
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
-    resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
+    resources :events, only: [:index, :show]
     resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show]
     get 'entries/confirm'
     get 'entries/thanks'
