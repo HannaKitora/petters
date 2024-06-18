@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
+  before_action :user_state, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
 
   def after_sign_in_path_for(resource)
@@ -30,6 +30,13 @@ class Public::SessionsController < Devise::SessionsController
         flash[:notice] = "項目を入力してください"
       end
     end
+  end
+  
+  private
+  def user_state
+    user = User.find_by(email: params[:user][:email])
+    return if user.nil?
+    return unless user.valid_password?(params[:user][:password])
   end
   
   # GET /resource/sign_in
