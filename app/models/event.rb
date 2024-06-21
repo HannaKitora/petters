@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_one_attached :image
+  has_many :entries, dependent: :destroy
   
   def get_image
     unless image.attached?

@@ -1,5 +1,4 @@
-<h1>Events</h1>
-
+<h1>Event</h1>
      <table class="table table-hover">
         <thead>
           <tr>
@@ -26,8 +25,13 @@
               <td>
                 <%= event.detail %>
               </td>
+              <td>
+                <%= link_to '編集', edit_admin_event_path(event.id) %>
+              </td>
+              <td>
+                <%= link_to '削除', admin_event_path(event.id), method: :delete, data: { confirm: 'Are you sure？' } %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-  

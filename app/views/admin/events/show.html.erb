@@ -1,0 +1,15 @@
+<h1>Event</h1>
+
+<div>
+  <p><%= @event.name %></p>
+  <%= image_tag @event.get_image %>
+  
+  <p>Price:<%= @event.price %></p>
+  <p><%= @event.detail %></p>
+  
+  
+    <%= link_to "Edit", edit_admin_event_path(@event.id) %>
+
+    <%= link_to "Destroy", admin_event_path(@event.id), method: :delete, "data-confirm" =>"Are you OK?" %>
+ 
+</div>

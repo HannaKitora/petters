@@ -1,16 +1,16 @@
 class Public::EventsController < ApplicationController
   
   def index
-    @events = Event.all
+    @events = AdminEvent.all
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = AdminEvent.find(params[:id])
   end
   
   def update
-    @event = Event.find(params[:id])
-    if @event.update(event_params)
+    @event = AdminEvent.find(params[:id])
+    if @event.update(admin_event_params)
       flash[:notice] = "You have updated pet successfully."
       redirect_to event_path(@event.id)
     else
@@ -21,7 +21,7 @@ class Public::EventsController < ApplicationController
   
   private
   
-  def event_params
+  def admin_event_params
     params.require(:event).permit(:name, :image, :price, :detail)
   end
 

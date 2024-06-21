@@ -1,6 +1,6 @@
 <h1>Event</h1>
 
-<%= form_with model: @event do |f| %>
+<%= form_with url: admin_events_path, model: @event do |f| %>
   <h4>image</h4>
   <%= f.file_field :image, accept: "image/*" %>
 

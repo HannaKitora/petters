@@ -6,8 +6,11 @@ class Admin::EventsController < ApplicationController
   
   def create
     @event = Event.new(event_params)
-    @event.save
-    redirect_to events_path(params[:id])
+    if @event.save
+      redirect_to admin_event_path(@event)
+    else
+      render :new
+    end
   end
 
   def index
@@ -16,7 +19,6 @@ class Admin::EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
-    render_to event_path
   end
   
   def show
@@ -27,7 +29,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.update(event_params)
       flash[:notice] = "You have updated pet successfully."
-      redirect_to event_path(@event.id)
+      redirect_to admin_event_path(@event.id)
     else
       flash.now[:notice]
       render :edit

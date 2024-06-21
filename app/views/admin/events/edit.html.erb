@@ -1,4 +1,4 @@
-<h1>Events#edit</h1>
+<h1>Event Edit</h1>
 
 <% if @event.errors.any? %>
   <%= @event.errors.count %>error prohibited this obj from being saved:
@@ -9,7 +9,7 @@
   </ul>
 <% end %>
 
-        <%= form_with model: @event do |f| %>
+        <%= form_with url: admin_event_path(@event.id), model: @event, method: :patch do |f| %>
           <label for="inputName">Title</label>
           <br>
           <%= f.text_field :name, autofocus: true, id:"inputName"%>
@@ -23,6 +23,6 @@
           <%= f.submit "Update Event" %>
         <% end %>
         
-        <%= link_to "Show", event_path(@event.id) %>
+        <%= link_to "Show", admin_event_path(@event.id) %>
         |
-        <%= link_to "Back", events_path %>
+        <%= link_to "Back", admin_events_path %>
