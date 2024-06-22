@@ -22,30 +22,9 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index, :edit, :update]
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
-    resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show]
+    resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show, :destroy_all]
     get 'entries/confirm'
     get 'entries/thanks'
   end
   
-
-  
-  # devise_for :admins
-  # get 'entries/new'
-  # get 'entries/create'
-  # get 'entries/index'
-  # get 'entries/show'
-  # get 'events/new'
-  # get 'events/index'
-  # get 'events/edit'
-  # get 'events/destroy'
-  # get 'events/show'
-  # get 'users/index'
-  # get 'users/show'
-  # get 'users/edit'
-  # get 'pets/new'
-  # get 'pets/index'
-  # get 'pets/show'
-  # get 'pets/edit'
-  # get 'pets/destroy'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

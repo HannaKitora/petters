@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   has_one_attached :image
   has_many :entries, dependent: :destroy
+  validates :price, presence: true
   
   def get_image
     unless image.attached?
@@ -10,4 +11,9 @@ class Event < ApplicationRecord
       image
     end
   end
+  
+  def with_tax_price
+   (price * 1.1).floor
+  end
+
 end

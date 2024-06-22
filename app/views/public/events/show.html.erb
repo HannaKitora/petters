@@ -1,10 +1,14 @@
 <h1>Event</h1>
-
-<div>
-  <p><%= @event.name %></p>
-  <%= image_tag @event.get_image %>
+<!--<#%= render "public/shared/header" %>-->
+<%= image_tag @event.image, fill: [300, 300], format: 'jpeg' %>
+<br>
+<%= @event.name %>
+<%= @event.detail %>
+<%= @event.with_tax_price %>
+<%= form_with model:@entry_new, local:true do |f| %>
+  <%= f.label :amount, "枚数" %>
+    <%= f.select :amount, *[1..10] %>
+　<%= f.hidden_field :event_id, value: @event.id %>
   
-  <p>Price:<%= @event.price %></p>
-  <p><%= @event.detail %></p>
-  
-</div>
+  <%= f.submit "Entry" %>
+<% end %>

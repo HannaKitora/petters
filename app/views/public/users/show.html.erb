@@ -6,7 +6,7 @@
   <p><%= @user.introduction %></p>
   <% if @user == current_user %>
     <p><%= link_to "edit profile", edit_user_path(@user) %></p>
-    <p><%= link_to "Entry", entries_path(@user) %></p>
+    <!--<p><#%= link_to "Entry", entry_path(@user.entry.id) %></p>-->
   <% end %>
 </div>
 

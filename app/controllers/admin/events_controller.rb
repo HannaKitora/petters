@@ -9,6 +9,7 @@ class Admin::EventsController < ApplicationController
     if @event.save
       redirect_to admin_event_path(@event)
     else
+      flash.now[:danger] = "登録に失敗しました"
       render :new
     end
   end

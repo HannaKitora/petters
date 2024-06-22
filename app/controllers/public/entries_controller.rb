@@ -6,30 +6,36 @@ class Public::EntriesController < ApplicationController
   def confirm
     @entries = Entry.find(params[:id])
     @entry = Event.find(params[:id])
+    render :thanks
   end
 
   def thanks
   end
 
   def create
-    @entry = Entry.new(entry_params)
-    if @entry.save
-      redirect_to entries_path
-    else
-      render :new
-    end
+    entry = Entry.new(entry_params)
+    entry.user_id = current_user.id
+    entry.event_id = entry_params[:event_id]
+    entry.save
+    redirect_to entries_path
   end
 
   def index
-    @entries = Entry.find(params[:id])
+    @entries = Entry.all
   end
 
   def show
-    @entry = Event.find(params[:id])
+    @entry = Entry.find(params[:id])
   end
+  
+  def destroy_all
+    Enrty.destroy_all
+    redirect_back(fallback_location: root_path)
+  end
+
   
   private
   def entry_params
-    params.requre(:entry).permit(:amount)
+    params.require(:entry).permit(:amount, :event_id)
   end
 end
