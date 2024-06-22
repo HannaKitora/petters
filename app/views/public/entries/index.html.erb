@@ -11,7 +11,7 @@
     <% @entries.each do |entry| %>
       <tr>
         <td>
-          <%= get_image_tag entry.event.image, fill: [300, 300], format: 'jpeg' %>
+          <%= image_tag event.id.image, fill: [300, 300], format: 'jpeg' %>
         　<%= entry.event.name %>
         </td>
         <td><%= entry.event.with_tax_price %></td>
@@ -26,5 +26,10 @@
       </tr>
       <% @sum += entry.subtotal %>
     <% end %>
+    </tbody>
   </table>
   合計金額 <%= @sum %>
+  
+  <div class="mt-4">
+    <%= button_to 'Order', new_entry_path, method: :get, class: "btn btn-danger w-100" %>
+  </div>

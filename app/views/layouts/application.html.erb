@@ -27,6 +27,12 @@
           <%= link_to 'イベント', events_path %>
         </li>
         <li>
+          <%= link_to 'エントリー', entries_path %>
+        </li>
+        <li>
+          <%= link_to 'エントリー履歴', entries_confirm_path %>
+        </li>
+        <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
         </li>
       <% else %>

@@ -1,4 +1,4 @@
-<h1>Entries#confirm</h1>
+<h1>Entried</h1>
 
   <table class="table table-bordered">
     <tr class="table-active">
@@ -16,14 +16,7 @@
         　<%= entry.item.name %>
         </td>
         <td><%= entry.item.with_tax_price %></td>
-        <td>
-          <%= form_with model:entry, url:entry_path(entry.id) , local:true do |f| %>
-        　　  <%= f.select :amount, *[1..10] %>
-      　  　  <%= f.submit "変更" , class: "btn btn-success" %>
-          <% end %>
-        </td>
         <td><%= entry.subtotal %></td>
-        <td><%= link_to "削除", destroy_entry_path(entry.id) ,  method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%></td>
       </tr>
       <% @sum += entry.subtotal %>
     <% end %>

@@ -6,6 +6,4 @@ class Entry < ApplicationRecord
   def subtotal
     event.with_tax_price * amount
   end
-  
-  
 end
