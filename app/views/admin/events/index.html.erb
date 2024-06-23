@@ -13,7 +13,7 @@
             <tr>
               <th scope="row">
                 <%= link_to admin_event_path(event.id) do %>
-                  <%= image_tag event.get_image %>
+                  <%= image_tag event.get_image, size: '300x300' %>
                 <% end %>
               </th>
               <td>

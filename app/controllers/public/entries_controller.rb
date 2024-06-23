@@ -1,5 +1,5 @@
 class Public::EntriesController < ApplicationController
-  before_action :authenticate_user!, except: [:new, :create]
+  before_action :authenticate_user!
   
   def new
     @entry = Entry.new
@@ -16,6 +16,7 @@ class Public::EntriesController < ApplicationController
         @entry.amount = entry.amount
         @entry.tax_included_price = (entry.event.price*1.1).floor
         @entry.save
+      end
       render :thanks
     else
       flash.now[:alert] = 'failed to entry'
@@ -25,21 +26,20 @@ class Public::EntriesController < ApplicationController
 
   def index
     @entries = Entry.all
-    event.id = entry.event.id
-    render :new
+    @sum = 0
   end
 
   def show
   end
   
-  def destroy_all
-    Enrty.destroy_all
+  def destroy
+    Enrty.destroy
     redirect_back(fallback_location: root_path)
   end
   
   def confirm
-    @entries = Entry.find(params[:id])
-    @entry = Event.find(params[:id])
+    @entries = Entry.all
+    @sum = 0
   end
 
   def thanks

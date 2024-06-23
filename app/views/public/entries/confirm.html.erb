@@ -9,13 +9,13 @@
       <th><br></th>
     </tr>
     <tbody>
-    <% entries.each do |entry| %>
+    <% @entries.each do |entry| %>
       <tr>
         <td>
-  　       <%= attachment_image_tag entry.item, :image, :fill, 300, 300, format: 'jpeg' %>
-        　<%= entry.item.name %>
+          <%= image_tag entry.event.get_image, size: '300x300' %>
+        　<%= entry.event.name %>
         </td>
-        <td><%= entry.item.with_tax_price %></td>
+        <td><%= entry.event.with_tax_price %></td>
         <td><%= entry.subtotal %></td>
       </tr>
       <% @sum += entry.subtotal %>

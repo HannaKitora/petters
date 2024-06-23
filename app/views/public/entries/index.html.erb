@@ -11,7 +11,7 @@
     <% @entries.each do |entry| %>
       <tr>
         <td>
-          <%= image_tag event.id.image, fill: [300, 300], format: 'jpeg' %>
+          <%= image_tag entry.event.get_image, size: '300x300' %>
         　<%= entry.event.name %>
         </td>
         <td><%= entry.event.with_tax_price %></td>
@@ -22,7 +22,7 @@
           <% end %>
         </td>
         <td><%= entry.subtotal %></td>
-        <td><%= link_to "削除", destroy_entry_path(entry.id) ,  method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%></td>
+        <td><%= link_to "削除", entry_path(entry.id), method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%></td>
       </tr>
       <% @sum += entry.subtotal %>
     <% end %>

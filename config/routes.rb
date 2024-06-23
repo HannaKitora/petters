@@ -22,9 +22,9 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :index, :edit, :update]
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
-    resources :entries, only: [:new, :confirm, :thanks, :create, :index, :show, :destroy_all]
     get 'entries/confirm'
     get 'entries/thanks'
+    resources :entries, only: [:new, :create, :index, :show, :destroy]
   end
   
 end

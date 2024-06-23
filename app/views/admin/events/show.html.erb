@@ -1,8 +1,8 @@
 <h1>Event</h1>
 
 <div>
-  <p><%= @event.name %></p>
-  <%= image_tag @event.get_image %>
+  <h3><strong><%= @event.name %></strong></h3>
+  <%= image_tag @event.get_image, size: '400x400' %>
   
   <p>Price:<%= @event.price %></p>
   <p><%= @event.detail %></p>
