@@ -21,4 +21,30 @@ class Pet < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
   
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Pet.where(name: content)
+    elsif method == 'forward'
+      Pet.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      Pet.where('name LIKE ?', '%' + content)
+    else
+      Pet.where('name LIKE ?', '%' + content + '%')
+    end
+  end
+  
+  # def self.looks(search, word)
+  #   if search == "perfect_match"
+  #     @pet = Pet.where("name LIKE?","#{word}")
+  #   elsif search == "forward_match"
+  #     @pet = Pet.where("name LIKE?","#{word}%")
+  #   elsif search == "backward_match"
+  #     @pet = Pet.where("name LIKE?","%#{word}")
+  #   elsif search == "partial_match"
+  #     @pet = Pet.where("name LIKE?","%#{word}%")
+  #   else
+  #     @pet = Pet.all
+  #   end
+  # end
+  
 end

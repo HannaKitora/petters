@@ -1,0 +1,31 @@
+<h2>Results index</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがUserの時 -->
+  <% if @range == "User" %>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% elsif %>
+    <tbody>
+      <% @pets.each do |pet| %>
+        <tr>
+          <td><%= pet.name %></td>
+          <td><%= pet.kind %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% elsif %>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

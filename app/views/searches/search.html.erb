@@ -1,0 +1,22 @@
+<% if user_signed_in? %>
+  <!--<div class="search_form">-->
+  <!--  <#%= form_with url: search_path, local: true, method: :get do |f| %>-->
+  <!--    <#%= f.text_field :word %>-->
+  <!--    <#%= f.select :range, options_for_select([['User'], ['Pet'], ['Event']]) %>-->
+  <!--    <#%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>-->
+  <!--    <#%= f.submit "検索", class: "btn btn-primary" %>-->
+  <!--  <#% end %>-->
+  <!--</div>-->
+
+  <% if @model == 'user' %>
+    <h3>Users search for "<%= @content %>"</h3>
+    <%= render 'users/index', users: @records %>
+  <% elsif @model == 'pet' %>
+    <h3>Pets search for "<%= @content %>"</h3>
+    <%= render 'pets/index', pets: @records %>
+  <% elsif @model == 'event' %>
+    <h3>Events search for "<%= @content %>"</h3>
+    <%= render 'events/index', events: @records %>
+  <% end %>
+
+<% end %>

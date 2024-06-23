@@ -50,9 +50,16 @@
         </li>
       <% end %>
     </header>
-    
-    <%= yield %>
-    
+    <body>
+      <main>
+        <%= flash[:notice] %>
+        <div class="d-flex justify-content-center mb-2">
+          <%= render "searches/form" %>
+        </div>
+        <%= yield %>
+      </main>
+    </body>
+
     <footer>
       <p>CopyRight Petters.inc</p>
     </footer>
