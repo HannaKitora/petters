@@ -14,8 +14,8 @@
    <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-          <a class="navbar-brand p-3" href="/">
+        <div class="container ">
+          <a class="navbar-brand p-3" href="/"><i class="fas fa-paw"></i>PETTERS
             <!--<#%= image_tag('zion.jpg') %>-->
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -26,38 +26,38 @@
             <ul class="navbar-nav ml-auto">
 
             <% if user_signed_in? %>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'マイページ', user_path(current_user) %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'タイムライン', pets_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to '投稿フォーム', new_pet_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'イベント', events_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'エントリー', entries_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'エントリー履歴', entries_confirm_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
             <% else %>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'ホーム', root_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to 'イベント', events_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to "新規登録", new_user_registration_path %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item p-2 g-col-6">
                 <%= link_to "ログイン", new_user_session_path %>
               </li>
             <% end %>
@@ -79,6 +79,7 @@
         <div class="row no-gutters">
           <div class="col-md-4">
             <p>CopyRight Petters.inc</p>
+            ※本サイトは架空のサイトになります。
             <!--<#%= image_tag('zion.jpg'), size: '20x30' %>-->
           </div>
           <!--<div class="col-md-8">-->

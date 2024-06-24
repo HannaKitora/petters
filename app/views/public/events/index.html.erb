@@ -1,10 +1,21 @@
 <h1>Events</h1>
 
+<div class="card-list-container py-5">
   <% @events.each do |event| %>
-    <%= link_to event_path(event.id) do %>
-      <%= image_tag event.get_image, size: '300x300 %>
-    <% end %>
-    <h3><%= event.name %></h3>
-    <P>価格：</P><%= event.price %>
-    <%= event.detail %>
-　<% end %>
+    <div class="card mx-auto w-75 mt-4 shadow-lg">
+      <h3 class="card-name mx-3 mt-2"><%= event.name %></h3>
+      <%= link_to event_path(event.id) do %>
+        <%= image_tag event.get_image, class: "card-img-top mx-auto p-2"; %>
+      <% end %>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            
+            <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= event.price %></p>
+            <p class="card-text"><%= event.detail %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
