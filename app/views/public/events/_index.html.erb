@@ -1,8 +1,8 @@
 <h1>Events</h1>
 
-  <% @events.each do |event| %>
+  <% events.each do |event| %>
     <%= link_to event_path(event.id) do %>
-      <%= image_tag event.get_image, size: '300x300 %>
+      <%= image_tag event.get_image, size: '300x300' %>
     <% end %>
     <h3><%= event.name %></h3>
     <P>価格：</P><%= event.price %>

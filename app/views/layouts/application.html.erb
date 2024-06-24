@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Petters</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1">
+    <script src="https://kit.fontawesome.com/01ed44febb.js" crossorigin="anonymous"></script>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,59 +11,89 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+   <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">
+            <!--<#%= image_tag('zion.jpg') %>-->
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
 
-    <header>
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to 'マイページ', user_path(current_user) %>
-        </li>
-        <li>
-          <%= link_to 'タイムライン', pets_path %>
-        </li>
-        <li>
-          <%= link_to '投稿フォーム', new_pet_path %>
-        </li>
-        <li>
-          <%= link_to 'イベント', events_path %>
-        </li>
-        <li>
-          <%= link_to 'エントリー', entries_path %>
-        </li>
-        <li>
-          <%= link_to 'エントリー履歴', entries_confirm_path %>
-        </li>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-      <% else %>
-        <li>
-          <%= link_to 'ホーム', root_path %>
-        </li>
-        <li>
-          <%= link_to 'イベント', events_path %>
-        </li>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'マイページ', user_path(current_user) %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'タイムライン', pets_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '投稿フォーム', new_pet_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'イベント', events_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'エントリー', entries_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'エントリー履歴', entries_confirm_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'ホーム', root_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'イベント', events_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path %>
+              </li>
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </header>
-    <body>
-      <main>
+    
+    <main class="mb-auto">
         <%= flash[:notice] %>
         <div class="d-flex justify-content-center mb-2">
           <%= render "searches/form" %>
         </div>
         <%= yield %>
       </main>
-    </body>
-
-    <footer>
-      <p>CopyRight Petters.inc</p>
+    <footer class="bg-dark text-white pt-5 pb-4">
+      <div class="container">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <p>CopyRight Petters.inc</p>
+            <!--<#%= image_tag('zion.jpg'), size: '20x30' %>-->
+          </div>
+          <!--<div class="col-md-8">-->
+          <!--  <h6 class="text-white mt-2 mb-3">Link</h6>-->
+          <!--  <ul class="p-0 list-unstyled">-->
+          <!--    <li>-->
+          <!--      <a href="" title="About" class="text-white-50">会社概要</a>-->
+          <!--    </li>-->
+          <!--    <li>-->
+          <!--      <a href="" title="License informations" class="text-white-50">プライバシーポリシー</a>-->
+          <!--    </li>-->
+          <!--  </ul>-->
+          <!--</div>-->
+        </div>
+      </div>
     </footer>
-    
   </body>
 </html>

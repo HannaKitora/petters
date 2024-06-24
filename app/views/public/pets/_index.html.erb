@@ -1,0 +1,52 @@
+<h1>Pets</h1>
+
+  <% if user_signed_in? %>
+ 
+        <div>
+          <% pets.each do |pet| %>
+              <p>
+                <%= link_to pet_path(pet.id) do %>
+                  <%= image_tag pet.get_image, size: '500x500' %>
+                <% end %>
+              </p>
+              <%= pet.name %>
+              <%= pet.kind %>
+              <%= pet.caption %>
+                
+              <% if pet.user.present? %>
+              <p>
+                <%= link_to user_path(pet.user.id) do%>
+                  <%= image_tag pet.user.get_profile_image, size: '50x50' %>
+                <% end %>
+              </p>
+             
+              <p>
+                <%= link_to user_path(pet.user) do%>
+                  <%= pet.user.name %>
+                <% end %>
+              </p>
+              <% end %>
+          <% end %>
+        </div>
+
+　<% else %>
+        <div>
+          <% pets.each do |pet| %>
+
+              <div class="row">
+                <%= link_to pet_path(pet.id) do %>
+                  <%= image_tag pet.get_image, size: '500x500' %>
+                <% end %>
+              </div>
+              <div>
+                <%= pet.name %>
+                <%= pet.kind %>
+                <%= pet.caption %>
+              </div>
+              <div>
+                <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id) %>
+              </div>
+          <% end %>
+        </div>
+  
+  <% end %>
