@@ -6,9 +6,9 @@ class Public::EntriesController < ApplicationController
   end
 
   def create
-    entry = Entry.new(entry_params)
-    entry.user_id = current_user.id
-    entry.event_id = entry_params[:event_id]
+    @entry = Entry.new(entry_params)
+    @entry.user_id = current_user.id
+    @entry.event_id = entry_params[:event_id]
     if entry.save
       current_user.entries.each do |entry|
         @entry = Entry.new
@@ -30,6 +30,17 @@ class Public::EntriesController < ApplicationController
   end
 
   def show
+  end
+  
+  def update
+    @entry = Entry.find(params[:id])
+    if @entry.update(entry_params)
+      flash[:notice] = "You have updated entry successfully."
+      redirect_to entries_path
+    else
+      flash.now[:notice]
+      render :index
+    end
   end
   
   def destroy

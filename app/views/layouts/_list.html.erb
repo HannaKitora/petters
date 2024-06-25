@@ -2,28 +2,19 @@
   <%= flash[:notice] %>
 </div>
 <div class="col-md-3 col-sm-10 mx-2 mx-sm-auto">
-<% if user_signed_in? %>
-<div class="row">
-    <div class="col">
-  <h3><%= current_user.name %></h3>
+  <% if user_signed_in? %>
+    <h3><%= current_user.name %></h3>
     <%= image_tag user.get_profile_image %>
-  <p><%= user.introduction %></p>
+    <p><%= user.introduction %></p>
     <% if user == current_user %>
       <p><%= link_to "edit profile", edit_user_path(user) %></p>
-      </div>
-      </div>
     <% end %>
-<% else %>
-<div class="row">
-    <div class="col">
-  <h3><%= user.name %></h3>
+  <% else %>
+    <h3><%= user.name %></h3>
     <%= image_tag user.get_profile_image %>
-  <p><%= user.introduction %></p>
+    <p><%= user.introduction %></p>
     <% if user == current_user %>
       <p><%= link_to "edit profile", edit_user_path(user) %></p>
-    <!--<p><#%= link_to "Entry", entry_path(@user.entry.id) %></p>-->
     <% end %>
-    </div>
+  <% end %>
   </div>
-<% end %>
-</div>

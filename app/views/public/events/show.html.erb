@@ -1,14 +1,27 @@
-<h1>Event</h1>
-<!--<#%= render "public/shared/header" %>-->
-<%= image_tag @event.image, fill: [300, 300], format: 'jpeg' %>
-<br>
-<%= @event.name %>
-<%= @event.detail %>
-<%= @event.with_tax_price %>
-<%= form_with model:@entry_new, local:true do |f| %>
-  <%= f.label :amount, "枚数" %>
-    <%= f.select :amount, *[1..10] %>
-　<%= f.hidden_field :event_id, value: @event.id %>
-  
-  <%= f.submit "Entry" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h1>Event</h1>
+
+    <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+      <div class="card mx-auto my-4 shadow-lg">
+        <%= image_tag @event.image, fill: [300, 300], format: 'jpeg', class: "card-img-top mx-auto p-2"; %>
+          <div class="card-body">
+            <div class="row">
+            <div class="col">
+              <%= @event.name %>
+              <%= @event.detail %>
+              <%= @event.with_tax_price %>
+              
+              <%= form_with model:@entry_new, local:true do |f| %>
+                <%= f.label :amount, "枚数" %>
+                <%= f.select :amount, *[1..10] %>
+                <%= f.hidden_field :event_id, value: @event.id %>
+                <%= f.submit "Entry" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

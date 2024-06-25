@@ -6,8 +6,7 @@ class Public::EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @entry_new = Entry.new
-    redirect_to entries_path
+   
   end
   
   def update
