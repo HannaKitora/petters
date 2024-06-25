@@ -1,33 +1,36 @@
-<h2>User</h2>
+<div class="container">
+  <div class="row">
+    <%= render 'layouts/list', user: @user, pets: @pets %>
+    <%= render "searches/form" %>
 
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image %>
-  <p><%= @user.introduction %></p>
-  <% if @user == current_user %>
-    <p><%= link_to "edit profile", edit_user_path(@user) %></p>
-    <!--<p><#%= link_to "Entry", entry_path(@user.entry.id) %></p>-->
-  <% end %>
-</div>
-
-      
-        
-          <div>
-              <% @pets.each do |pet| %>
-
-                  <div class="row">
-                    <%= link_to pet_path(pet.id) do %>
-                      <%= image_tag pet.get_image %>
-                    <% end %>
-                  </div>
-                  <div>
-                    <p><%= link_to pet.name, pet_path(pet.id) %></p>
-                    <p><%= pet.kind %></p>
-                    <p><%= pet.caption %></p>
-                  </div>
-                  <p>
-                    <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id) %>
-                  </p>
-
-              <% end %>
+      <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+        <% @pets.each do |pet| %>
+        <div class="card w-50 mx-auto mt-4 shadow-lg">
+          <div class="row">
+            <%= link_to pet_path(pet.id) do %>
+              <%= image_tag pet.get_image, class: "card-img-top mx-auto py-2 px-4"; %>
+            <% end %>
           </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <p class="card-name">
+                  <i class="fas fa-paw"></i> <%= link_to pet.name, pet_path(pet.id) %>
+                </p>
+                <p class="card-text">
+                  <i class="fas fa-tablet-android"></i> <%= pet.kind %>
+                </p>
+                <p class="card-text">
+                  <%= pet.caption %>
+                </p>
+                <span>
+                  <i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id), class: "text-dark" %>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

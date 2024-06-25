@@ -1,3 +1,6 @@
+<%= render 'layouts/list', user: @user, pets: @pets %>
+<%= render "searches/form" %>
+
 <h1>Pets</h1>
 <div class="card-list-container py-5">
     <% if user_signed_in? %>
@@ -38,7 +41,7 @@
                 <p class="card-name"><i class="fas fa-paw"></i><%= pet.name %></P>
                 <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind %></P>
                 <p class="card-text"><%= pet.caption %></P>
-                <span><%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
+                <span><i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
               </div>
             </div>
           </div>
