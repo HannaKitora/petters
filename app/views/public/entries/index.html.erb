@@ -1,18 +1,21 @@
-<h1>Entries#index</h1>
-  <table class="table table-bordered">
+<div class="container">
+  <div class="row">
+<h1>Entries</h1>
+  <table class="table text-center">
     <tr class="table-active">
-      <th>イベント名</th>
-      <th>単価(税込み)</th>
-      <th>数量</th>
-      <th>小計</th>
+      <th>Event</th>
+      <th>Price</th>
+      <th>amounts</th>
+      <th>Subtotal</th>
       <th><br></th>
     </tr>
     <tbody>
     <% @entries.each do |entry| %>
       <tr>
         <td>
-          <%= image_tag entry.event.get_image, size: '300x300' %>
-        　<%= entry.event.name %>
+          <!--<#%= link_to event_path(entry.event.id) do %>-->
+        　   <%= entry.event.name %>
+        　<!--<#% end %>-->
         </td>
         <td><%= entry.event.with_tax_price %></td>
         <td>
@@ -29,7 +32,5 @@
     </tbody>
   </table>
   合計金額 <%= @sum %>
-  
-  <!--<div class="mt-4">-->
-  <!--  <%= button_to 'Order', new_entry_path, method: :get, class: "btn btn-danger w-100" %>-->
-  <!--</div>-->
+  </div>
+  </div>

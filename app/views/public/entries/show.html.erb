@@ -1,4 +1,25 @@
-<h1>Entries#show</h1>
-<p>Find me in app/views/entries/show.html.erb</p>
-
-
+<div class="container">
+  <div class="row">
+    <h1>Entries#show</h1>
+    <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+      <div class="card mx-auto my-4 shadow-lg">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h3 class="card-name mx-3 mt-2"><%= @entry.event.name %></h3>
+              <p class="card-price"><i class="fa-solid fa-coins"></i>
+                ￥ <%= @entry.event.with_tax_price %>
+              </p>
+              <%= form_with model: @entry, url: entry_path(@entry.id), local: true do |f| %>
+      　      　  <%= f.select :amount, *[1..10] %>
+                <%= f.submit "変更" , class: "btn btn-success" %>
+              <% end %>
+              <%= @entry.subtotal %>
+              <%= link_to "削除", entry_path(@entry.id), method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger"%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -22,10 +22,13 @@ class Public::EntriesController < ApplicationController
 
   def index
     @entries = Entry.all
+    @entry = Entry.new
+    # @event = Event.find(params[:event_id])
     @sum = 0
   end
 
   def show
+    @entry = Entry.find(params[:id])
   end
   
   def update
@@ -56,5 +59,9 @@ class Public::EntriesController < ApplicationController
   private
   def entry_params
     params.require(:entry).permit(:amount, :event_id, :user_id)
+  end
+  
+  def event_params
+    params.require(:event).permit(:event_id)
   end
 end

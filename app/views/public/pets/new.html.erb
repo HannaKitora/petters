@@ -1,31 +1,33 @@
 <div class="container py-5">
-  <div class="mx-auto mt-4 card w-50 mx-auto mt-4 shadow-lg">
-    <h1>Post</h1>
+  <div class="mx-auto mt-4 card w-50 p-4 mx-auto mt-4 shadow-lg">
+    <h3>Post Pet</h3>
 
     <%= form_with model: @pet do |f| %>
       <div class="body ">
         <div class="row">
           <div class="col">
             <div class="field">
-              <h4>image</h4>
+              <p class="post-name"><i class="fa-solid fa-camera"></i> image</p>
               <%= f.file_field :image, accept: "image/*" %>
             </div>
-            <div class="field">
-              <h4>pet's name</h4>
+            <div class="field py-4">
+              <p class="post-name"><i class="fas fa-paw"></i> pet's name</p>
               <%= f.text_field :name %>
             </div>
-            <div class="field">
-              <h4>kind</h4>
+            <div class="field pb-4">
+              <p class="post-name"><i class="fas fa-tablet-android"></i> kind</p>
               <%= f.text_field :kind %>
             </div>
-            <div class="field">
-              <h4>caption</h4>
+            <div class="field pd-4">
+              <p class="post-name">caption</p>
               <%= f.text_area :caption %>
             </div>
           </div>
         </div>
       </div>
-      <%= f.submit '投稿' %>
+      <div class="action">
+        <%= f.submit '投稿', class: "btn btn-info mt-2" %>
+      </div>
     <% end %>
   </div>
 </div>
