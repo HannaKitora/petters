@@ -1,15 +1,11 @@
 class Public::EntriesController < ApplicationController
   before_action :authenticate_user!
-  
-  def new
-    @entry = Entry.new
-  end
 
   def create
     @entry = Entry.new(entry_params)
     @entry.user_id = current_user.id
     @entry.event_id = entry_params[:event_id]
-    if entry.save
+    if @entry.save
       current_user.entries.each do |entry|
         @entry = Entry.new
         @entry.event_id = @entry.id

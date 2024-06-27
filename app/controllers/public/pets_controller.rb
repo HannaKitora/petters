@@ -13,6 +13,7 @@ class Public::PetsController < ApplicationController
   def index
     @pets = Pet.page(params[:page])
     @pet = Pet.new
+    @user = User.find(params[:user_id])
  
   end
 

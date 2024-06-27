@@ -3,18 +3,18 @@
 </div>
 <div class="col-md-3 col-sm-10 mx-2 mx-sm-auto">
   <% if user_signed_in? %>
-    <h3><%= current_user.name %></h3>
+    <h3><%= user.name %></h3>
     <%= image_tag user.get_profile_image %>
     <p><%= user.introduction %></p>
     <% if user == current_user %>
-      <p><%= link_to "edit profile", edit_user_path(user) %></p>
+      <p><%= link_to "edit profile", edit_user_path(user.id) %></p>
     <% end %>
   <% else %>
     <h3><%= user.name %></h3>
     <%= image_tag user.get_profile_image %>
     <p><%= user.introduction %></p>
     <% if user == current_user %>
-      <p><%= link_to "edit profile", edit_user_path(user) %></p>
+      <p><%= link_to "edit profile", edit_user_path(user.id) %></p>
     <% end %>
   <% end %>
   </div>

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :show]
     get 'entries/confirm'
     get 'entries/thanks'
-    resources :entries, only: [:new, :create, :index, :destroy, :update]
+    resources :entries, only: [:create, :index, :destroy, :update]
   end
   get "/search" => "searches#search"
 end

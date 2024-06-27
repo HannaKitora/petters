@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 2024_06_20_130552) do
     t.integer "event_id"
     t.integer "user_id"
     t.integer "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float "tax_included_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -73,8 +74,9 @@ ActiveRecord::Schema.define(version: 2024_06_20_130552) do
     t.text "detail"
     t.integer "user_id"
     t.integer "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "entry_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "favorites", force: :cascade do |t|
