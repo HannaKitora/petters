@@ -47,10 +47,10 @@ class Public::EntriesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
-  def confirm
-    @entries = Entry.all
-    @sum = 0
-  end
+  # def confirm
+  #   @entries = Entry.all
+  #   @sum = 0
+  # end
 
   def thanks
   end
