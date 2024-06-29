@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
     # get 'entries/confirm'
-    get 'entries/thanks'
+    post '/entries/thanks', to: 'public/entries#thanks'
+    # get 'entries/thanks'
     resources :entries, only: [:create, :index, :destroy, :update, :show]
   end
   get "/search" => "searches#search"

@@ -53,6 +53,7 @@ class Public::EntriesController < ApplicationController
   # end
 
   def thanks
+    flash[:notice] = "You have entried successfully."
   end
 
   
