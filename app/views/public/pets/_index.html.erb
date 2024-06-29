@@ -11,10 +11,10 @@
             <div class="row">
               <div class="col">
                 <% if pet.user.present? %>
-                  <%= link_to user_path(pet.user.id) do%>
+                  <%= link_to user_path(pet.user) do%>
                     <%= image_tag pet.user.get_profile_image, size: '50x50', class: "mt-3 rounded-circle"; %>
                   <% end %>
-                  <%= link_to user_path(pet.user.id) do%>
+                  <%= link_to user_path(pet.user) do%>
                     <%= pet.user.name %>
                   <% end %>
                 <% end %>
