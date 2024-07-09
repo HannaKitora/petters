@@ -1,12 +1,17 @@
-<h1>PETTERS</h1>
+<div class="content">
+  <h1>PETTERS</h1>
+  <div class="row">
+    <%= link_to about_path do %>
+      <i class="fas fa-paw"></i>
+      PETTERS
+    <% end %>
+   にようこそ！
+  </div>
 
-<p>
-  <%= link_to about_path do %>
-    <i class="fas fa-paw"></i>
-    PETTERS
-  <% end %>
- にようこそ！
-</p>
+  <div class="row">
+    <div class="col">
+      <%= link_to "guest login", users_guest_sign_in_path, class: "btn btn-secondary btn-sm mb-3 sign_in", method: :post %>
+    </div>
+  </div>
 
-
-<br>
+</div>

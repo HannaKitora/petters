@@ -14,6 +14,7 @@ class Public::PetsController < ApplicationController
     @pets = Pet.page(params[:page])
     @pet = Pet.new
     @user = current_user
+      
   end
 
   def show
