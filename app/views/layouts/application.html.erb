@@ -14,7 +14,7 @@
    <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container ">
+        <div class="container">
           <a class="navbar-brand p-3" href="/"><i class="fas fa-paw"></i>PETTERS
             <!--<#%= image_tag('zion.jpg') %>-->
           </a>
@@ -47,10 +47,7 @@
               <li class="nav-item p-2 g-col-6">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
               </li>
-            <% elsif admin_sign_in? %>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'イベント', admin_events_path %>
-              </li>
+            
             <% else %>
               <li class="nav-item p-2 g-col-6">
                 <%= link_to 'ホーム', root_path %>

@@ -1,17 +1,34 @@
-<h1>Event</h1>
+<div class="container py-2">
+  <h2>Event</h2>
 
-<%= form_with url: admin_events_path, model: @event do |f| %>
-  <h4>image</h4>
-  <%= f.file_field :image, accept: "image/*" %>
+  <%= form_with url: admin_events_path, model: @event do |f| %>
+    <div class="body">
+      <div class="row">
+        <div class="col-10">
+          <div class="field">
+            <p class="post-image">image</p>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
 
-  <h4>Title</h4>
-  <%= f.text_field :name %>
+          <div class="field py-4">
+            <p class="post-title">Title</p>
+            <%= f.text_field :name %>
+          </div>
 
-  <h4>Price</h4>
-  <%= f.text_field :price %>
+          <div class="field">
+            <p class="post-price">Price</p>
+            <%= f.text_field :price %>
+          </div>
 
-  <h4>Detail</h4>
-  <%= f.text_area :detail %>
-
-  <%= f.submit 'POST' %>
-<% end %>
+          <div class="field">
+            <p class="post-detail mt-3">Detail</p>
+            <%= f.text_area :detail %>
+          </div>
+          <div class="action">
+            <%= f.submit 'POST', class: "btn btn-outline-info mt-3" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

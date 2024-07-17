@@ -1,14 +1,14 @@
 <div class="container">
-  <h1>Event</h1>
+  <h1>Hello Admin!</h1>
+  <h3>Event</h3>
   <div class="row m-5">
     
     <div class="col">
-      <%= link_to 'イベント作成', new_admin_event_path %>
+      <%= link_to 'Create Event', new_admin_event_path, class: "btn btn-warning btn-block" %>
     </div>
   </div>
-  <h1>All Users</h1>
+  <h3>All Users</h3>
   <table class="table table-hover">
-    
     <thead>
       <tr>
         <th>name</th>
@@ -26,7 +26,7 @@
             <%= user.email %>
           </th>
           <th>
-            <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure？' } %>
+            <%= link_to 'Destroy', admin_user_path(user), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>
           </th>
         </tr>
       <% end %>

@@ -11,7 +11,7 @@
       <div class="card-list-container py-5">
         <% if user_signed_in? %>
           <% @pets.each do |pet| %>
-            <div class="card w-50 mx-auto mt-4 shadow-lg">
+            <div class="card w-75 mx-auto mt-4 shadow-lg">
               <%= link_to pet_path(pet.id) do %>
                 <%= image_tag pet.get_image, class: "card-img-top mx-auto p-2"; %>
               <% end %>
@@ -37,7 +37,7 @@
           <% end %>
         <% else %>
           <% @pets.each do |pet| %>
-            <div class="card w-50 mx-auto mt-4 shadow-lg">
+            <div class="card w-75 mx-auto mt-4 shadow-lg">
               <%= link_to pet_path(pet.id) do %>
                 <%= image_tag pet.get_image, class: "card-img-top mx-auto p-2"; %>
               <% end %>

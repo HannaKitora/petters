@@ -4,6 +4,7 @@
   </div>
   <div class="row">
     <%= render 'layouts/list', user: @user, pets: @pets %>
+    
     <%= render "/public/users/follow", users: @user.followers %>
     
 
