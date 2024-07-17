@@ -2,6 +2,7 @@ class SearchesController < ApplicationController
   before_action :authenticate_user!
 
   def search
+    @user = current_user
     @model = params[:model]
     @content = params[:content]
     @method = params[:method]

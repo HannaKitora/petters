@@ -1,13 +1,20 @@
-<% if user_signed_in? %>
+<div class="container">
+  <% if user_signed_in? %>
+    <%= render 'layouts/list', user: @user, pets: @pets %>
+    <%= render "searches/form" %>
+    
+    <div class="col-10">
+    <% if @model == 'user' %>
+      <h3>Users search for "<%= @content %>"</h3>
+      <%= render 'public/users/index', users: @records %>
+    <% elsif @model == 'pet' %>
+      <h3>Pets search for "<%= @content %>"</h3>
+      <%= render 'public/pets/index', pets: @records %>
+    <% elsif @model == 'event' %>
+      <h3>Events search for "<%= @content %>"</h3>
+      <%= render 'public/events/index', events: @records %>
+    <% end %>
+    </div>
 
-  <% if @model == 'user' %>
-    <h3>Users search for "<%= @content %>"</h3>
-    <%= render 'public/users/index', users: @records %>
-  <% elsif @model == 'pet' %>
-    <h3>Pets search for "<%= @content %>"</h3>
-    <%= render 'public/pets/index', pets: @records %>
-  <% elsif @model == 'event' %>
-    <h3>Events search for "<%= @content %>"</h3>
-    <%= render 'public/events/index', events: @records %>
   <% end %>
-<% end %>
+</div>

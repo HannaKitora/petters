@@ -16,7 +16,7 @@ class Public::SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource)
-    pets_path
+    root_path
   end
   
   protected
@@ -39,12 +39,17 @@ class Public::SessionsController < Devise::SessionsController
   end
   
   private
+  
   def user_state
     user = User.find_by(email: params[:user][:email])
     return if user.nil?
     return unless user.valid_password?(params[:user][:password])
+    
+    if user
+      if user.valid_password?(params[:user][:password])
+      end
+    end
   end
-  
   # GET /resource/sign_in
   # def new
   #   super

@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <div class="col-12">
+      <%= flash[:notice] %>
+    </div>
     <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
       <h1>Pet</h1>
       <div class="card w-75 mx-auto p-4 mt-4 shadow-lg">
@@ -8,7 +11,7 @@
           <p class="card-name"><i class="fas fa-paw"></i> name：<%= @pet.name %></p>
           <p class="card-text"><i class="fas fa-tablet-android"></i> kind：<%= @pet.kind %></p>
           <p class="card-text">caption：<%= @pet.caption %></p>
-          <%= image_tag @pet.user.get_profile_image, size: '30x30', class: "rounded-circle"; %>
+          <%= image_tag @pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
           <%= @pet.user.name %>
           <%= @pet.created_at.strftime('%Y/%m/%d') %>
           <% if @pet.user == current_user %>
@@ -39,10 +42,11 @@
               <%= comment.user.name %>
               <%= comment.created_at.strftime('%Y/%m/%d') %>
               <%= comment.comment_content %>
+            
+              <% if comment.user == current_user %>
+                <%= link_to "Delete", pet_comment_path(comment.pet, comment), method: :delete %>
+              <% end %>
             </p>
-            <% if comment.user == current_user %>
-              <%= link_to "Delete", pet_comment_path(comment.pet, comment), method: :delete %>
-            <% end %>
           <% end %>
           <%= form_with model: [@pet, @comment] do |f| %>
             <%= f.text_area :comment_content, rows: '5', placeholder: "Comment here" %>

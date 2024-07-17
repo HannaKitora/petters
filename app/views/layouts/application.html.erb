@@ -41,11 +41,15 @@
               <li class="nav-item p-2 g-col-6">
                 <%= link_to 'エントリー', entries_path %>
               </li>
-              <!--<li class="nav-item p-2 g-col-6">-->
-              <!--  <#%= link_to 'エントリー履歴', entries_confirm_path %>-->
-              <!--</li>-->
+              <li class="nav-item p-2 g-col-6">
+                <%= link_to 'ユーザー一覧', users_path %>
+              </li>
               <li class="nav-item p-2 g-col-6">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            <% elsif admin_sign_in? %>
+              <li class="nav-item p-2 g-col-6">
+                <%= link_to 'イベント', admin_events_path %>
               </li>
             <% else %>
               <li class="nav-item p-2 g-col-6">

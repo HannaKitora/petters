@@ -24,6 +24,10 @@
           <br>
           <%= f.submit "Update User", class: "btn btn-secondary mt-4" %>
         <% end %>
+        
+        <div class="unsubscribe">
+          <%= link_to '退会', unsubscribe_path(@user.id) %>
+        </div>
       </div>
     </div>
   </div>

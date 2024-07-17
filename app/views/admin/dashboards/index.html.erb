@@ -1,12 +1,35 @@
-<h1>Event</h1>
-<%= link_to 'イベント作成', new_admin_event_path %>
-
-<h1>All Users</h1>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.name %> - <%= user.email %>
-      <%= link_to '削除', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure？' } %> 
-    </li>
-  <% end %>
-</ul>
+<div class="container">
+  <h1>Event</h1>
+  <div class="row m-5">
+    
+    <div class="col">
+      <%= link_to 'イベント作成', new_admin_event_path %>
+    </div>
+  </div>
+  <h1>All Users</h1>
+  <table class="table table-hover">
+    
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>email</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <th>
+            <%= user.name %>
+          </th>
+          <th>
+            <%= user.email %>
+          </th>
+          <th>
+            <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure？' } %>
+          </th>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

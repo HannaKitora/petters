@@ -15,14 +15,21 @@ Rails.application.routes.draw do
     end
     root to: 'homes#top'
     get "/homes/about" => "homes#about", as: "about"
-    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe' #退会確認画面
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal' #論理削除
     
     resources :pets, only: [:new, :create, :index, :show, :destroy] do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :index, :edit, :update]
+    resources :users, only: [:show, :index, :edit, :update] do
+      member do
+        get :favorites
+      end
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings',as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
     # get 'entries/confirm'

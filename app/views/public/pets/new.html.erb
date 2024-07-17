@@ -1,6 +1,16 @@
 <div class="container py-5">
   <div class="mx-auto mt-4 card w-50 p-4 mx-auto mt-4 shadow-lg">
     <h3>Post Pet</h3>
+    <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <h5><%= flash[:error].count %>件のエラーがあります</h3>
+          <ul>
+            <% flash[:error].each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
     <%= form_with model: @pet do |f| %>
       <div class="body ">

@@ -1,35 +1,39 @@
-     <h2>Users</h2>
-        <div class="col-lg">
-          <table class="table">
-            <thead>
+<div class="container">
+  <div class="row p-5">
+    <%= render "searches/form" %>
+  </div>
+  <div class="row">
+    <%= render 'layouts/list', user: current_user %>
+    
+    <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+      <h2>Users</h2>
+      <div class="col-lg">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">image</th>
+              <th scope="col">name</th>
+              <th scope="col">join</th>
+              <th scope="col">detail</th>
+            </tr>
+          </thead>
+          <% @users.each do |user| %>
+            <tbody>
               <tr>
-                <th scope="col">image</th>
-                <th scope="col">name</th>
-                <th scope="col">join</th>
-                <th scope="col">detail</th>
+                <th scope="col">
+                  <%= image_tag user.get_profile_image(50,50) %>
+                </th>
+                <th scope="col">
+                  <%= user.name %>
+                </th>
+                <th scope="col">
+                  <%= link_to "Show", user_path(user.id) %>
+                </th>
               </tr>
-            </thead>
-
-            <% @users.each do |user| %>
-              <tbody>
-                <tr>
-                  <th scope="col">
-                    <%= image_tag user.get_profile_image(70,70) %>
-                  </th>
-                  <th scope="col">
-                    <%= user.name %>
-                  </th>
-                  <th scope="col">
-                    <%= link_to "Show", user_path(user.id) %>
-                  </th>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
-          
-          <!--<#% unless user.guest_user? %>-->
-          <!--  <div class="col">-->
-          <!--    <#%= link_to "",edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>-->
-          <!--  </div>-->
-          <!--<#% end %>-->
-        </div>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

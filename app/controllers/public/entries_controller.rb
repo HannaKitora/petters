@@ -43,7 +43,8 @@ class Public::EntriesController < ApplicationController
   end
   
   def destroy
-    Enrty.destroy
+    @entry = Entry.find(params[:id])
+    @entry.destroy
     redirect_back(fallback_location: root_path)
   end
   

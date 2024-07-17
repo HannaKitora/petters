@@ -1,21 +1,23 @@
-<div class="col-12">
+<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
   <%= flash[:notice] %>
 </div>
-<div class="col-md-3 col-sm-10 mx-2 mx-sm-auto">
-  <% if user_signed_in? %>
-    <h3><%= user.name %></h3>
-    <%= image_tag user.get_profile_image %>
-    <p><%= user.introduction %></p>
-    <% if user == current_user %>
-      <p><%= link_to "edit profile", edit_user_path(user.id) %></p>
-    <% end %>
-
+  <div class="col-md-2 col-sm-10 mx-2 mx-sm-auto">
+  <% if current_user.id == user.id? %>
+    <h3><%= current_user.name %></h3>
+    <%= image_tag current_user.get_profile_image(50,50) %>
+    <p><%= current_user.introduction %></p>
   <% else %>
     <h3><%= user.name %></h3>
-    <%= image_tag user.get_profile_image %>
+    <%= image_tag user.get_profile_image(50,50) %>
     <p><%= user.introduction %></p>
-    <% if user == current_user %>
-      <p><%= link_to "edit profile", edit_user_path(user.id) %></p>
-    <% end %>
   <% end %>
+    <% if current_user != user %>
+      <%= render "/public/relationships/btn", user: user %>
+    <% else %>
+      <p><%= link_to "edit profile", edit_user_path(user.id), user: user %></p>
+      <p><%= link_to "favorites", favorites_user_path(user.id) %></p>
+      
+    <% end %>
+ 
   </div>
+<!--<#%= render "/public/users/follow", users: user.followers %>-->

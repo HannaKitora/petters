@@ -1,4 +1,7 @@
 class Public::PetsController < ApplicationController
+  
+  before_action :ensure_login_user
+
   def new
     @pet = Pet.new
   end
@@ -6,14 +9,21 @@ class Public::PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     @pet.user_id = current_user.id
-    @pet.save
-    redirect_to pets_path(params[:id])
+    if @pet.save
+      flash[:notice] = "You have posted pet successfully."
+      redirect_to pets_path(params[:id])
+    else
+       redirect_to new_pet_path, flash: { error: @pet.errors.full_messages }
+    #   flash.now[:alert] = "No content!"
+    #   render :edit, status: :unprocessable_entity
+    end
   end
 
   def index
-    @pets = Pet.page(params[:page])
+    @pets = Pet.page(params[:page]).order(created_at: :desc)
     @pet = Pet.new
     @user = current_user
+    @users = User.where(params[:user_id])
       
   end
 
@@ -36,9 +46,10 @@ class Public::PetsController < ApplicationController
       @user = current_user
       flash[:notice] = "You have updated pet successfully."
       redirect_to pet_path(@pet.id)
-    else
-      flash.now[:notice]
-      render :edit
+    # else
+      # redirect_to edit_pet_path(@pet.id), flash: { error: @pet.errors.full_messages }
+      # flash.now[:notice]
+      # render :edit
     end
   end
 
@@ -56,5 +67,13 @@ class Public::PetsController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+  
+  def ensure_login_user
+    # user = User.find(params[:user_id])
+    unless user_signed_in?
+      flash[:alert] = "ログインが必要です"
+      redirect_to root_path
+    end
   end
 end

@@ -5,7 +5,8 @@ class Pet < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   
-  
+  validates :name, presence: true
+  validates :kind, presence: true
   validates :image, presence: true
 
   def get_image

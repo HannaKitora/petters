@@ -1,17 +1,29 @@
-<div class="content">
-  <h1>PETTERS</h1>
-  <div class="row">
-    <%= link_to about_path do %>
-      <i class="fas fa-paw"></i>
-      PETTERS
-    <% end %>
-   にようこそ！
+<div class="container">
+  
+  <%= render 'layouts/flash_messages' %>
+  
+  <%= link_to about_path do %>
+    <%= image_tag "/assets/images/no_image.jpg", size: '200x300', class: "card-img-top mx-auto p-2"; %>
+  <% end %>
+  
+  <div class="row m-5">
+    <div class="col text-center">
+      <h2>
+      <%= link_to about_path do %>
+        <i class="fas fa-paw"></i>
+        PETTERS
+      <% end %>
+     にようこそ！
+     </h2>
+   </div>
   </div>
 
+  <% unless user_signed_in? %>
   <div class="row">
     <div class="col">
-      <%= link_to "guest login", users_guest_sign_in_path, class: "btn btn-secondary btn-sm mb-3 sign_in", method: :post %>
+      <%= link_to "guest login", users_guest_sign_in_path, class: "btn btn-outline-secondary btn-lg btn-block", method: :post %>
     </div>
   </div>
+  <% end %>
 
 </div>

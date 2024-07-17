@@ -1,4 +1,18 @@
 class ApplicationController < ActionController::Base
+  
+  add_flash_types :success, :info, :warning, :danger
+  
+  def ensure_login_user
+    if @current_user == nil
+      # redirect_to root_path, notice: "ログインが必要です"
+      flash[:alert] = 'ログインが必要です'
+      redirect_to root_path
+    end
+  end
+
+  # def set_current_user
+  #   @current_user=User.find_by(id :session[:user_id])
+  # end
   # before_action :configure_authentication
 
   # private
