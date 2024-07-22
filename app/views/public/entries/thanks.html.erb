@@ -1,10 +1,16 @@
 <%= flash[:notice] %>
-
+<div class="container">
+  <div class="col col-8 mt-5">
 <h1>Thank you!!</h1>
-
+</div>
+<div class="col col-8 mt-10">
 <h3>
-  参加申込ありがとうございます。
+  参加申込ありがとうございます。<br>
   当日はお気をつけてお越しくださいませ。
 </h3>
-
-<%= link_to 'my page', user_path(current_user), class: 'btn btn-box btn-secondary' %>
+</div>
+<div class="col col-8 mt-5">
+<%= link_to 'my page', user_path(current_user), class: 'btn btn-block btn-secondary' %>
+</div>
+</div>
+</div>

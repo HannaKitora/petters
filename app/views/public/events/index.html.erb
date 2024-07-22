@@ -2,10 +2,14 @@
   <div class="row">
     <h1>Events</h1>
 
-    <div class="card-list-container py-5">
+    <div class="card-list-container mb-5">
       <% @events.each do |event| %>
         <div class="card mx-auto w-75 mt-4 shadow-lg">
-          <h3 class="card-name mx-3 mt-2"><%= event.name %></h3>
+          <h3 class="card-name mx-3 mt-2 fs-3">
+            <%= link_to event_path(event.id) do %>
+              <%= event.name %>
+            <% end %>
+          </h3>
           <%= link_to event_path(event.id) do %>
             <%= image_tag event.get_image, class: "card-img-top mx-auto p-2"; %>
           <% end %>

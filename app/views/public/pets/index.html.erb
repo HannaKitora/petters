@@ -3,24 +3,29 @@
     <%= render "searches/form" %>
   </div>
   <div class="row">
-    <% if user_signed_in? %>
-      <%= render 'layouts/list', user: @user, pets: @pets %>
-    <% end %>
-    <div class="col-md-10 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+    <!--<div class="col-md-2 col-sm-10">-->
+      <% if user_signed_in? %>
+        <%= render 'layouts/list', user: @user, pets: @pets %>
+      <% end %>
+    <!--</div>-->
+    <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
       <h1>Pets</h1>
-      <div class="card-list-container py-5">
-        <% if user_signed_in? %>
-          <% @pets.each do |pet| %>
-            <div class="card w-75 mx-auto mt-4 shadow-lg">
-              <%= link_to pet_path(pet.id) do %>
-                <%= image_tag pet.get_image, class: "card-img-top mx-auto p-2"; %>
-              <% end %>
-              <div class="card-body pt-0">
-                <div class="row">
-                  <div class="col">
+      <div class="card-list-container-fluid">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!--<div class="card-list-container d-flex align-content-start flex-wrap py-5">-->
+          <% if user_signed_in? %>
+            <% @pets.each do |pet| %>
+              <div class="col">
+                <div class="card border-warning mx-1 mt-4 shadow-lg">
+                  <%= link_to pet_path(pet.id) do %>
+                    <%= image_tag pet.get_image, class: "card-img-top mx-auto p-2"; %>
+                  <% end %>
+                  <div class="card-body pt-0">
+                  <!--<div class="row">-->
+                  <!--  <div class="col">-->
                     <% if pet.user.present? %>
                       <%= link_to user_path(pet.user) do%>
-                        <%= image_tag pet.user.get_profile_image(50,50), class: "rounded-circle"; %>
+                        <%= image_tag pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
                       <% end %>
                       <%= link_to user_path(pet.user) do%>
                         <%= pet.user.name %>
@@ -29,35 +34,36 @@
                     <p class="card-name"><i class="fas fa-paw"></i><%= pet.name %></P>
                     <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind %></P>
                     <p class="card-text"><%= pet.caption %></P>
-                    <span><%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <% @pets.each do |pet| %>
-            <div class="card w-75 mx-auto mt-4 shadow-lg">
-              <%= link_to pet_path(pet.id) do %>
-                <%= image_tag pet.get_image, class: "card-img-top mx-auto p-2"; %>
-              <% end %>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col">
-                    <p class="card-name"><i class="fas fa-paw"></i><%= pet.name %></P>
-                    <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind %></P>
-                    <p class="card-text"><%= pet.caption %></P>
                     <span><i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+          
+          <% else %>
+            <% @pets.each do |pet| %>
+              <div class="card w-25 mx-3 mt-4 shadow-lg">
+                <%= link_to pet_path(pet.id) do %>
+                  <%= image_tag pet.get_image, class: "card-img-top mx-auto p-2"; %>
+                <% end %>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <p class="card-name"><i class="fas fa-paw"></i><%= pet.name %></P>
+                      <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind %></P>
+                      <p class="card-text"><%= pet.caption %></P>
+                      <span><i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-      <div class="d-flex align-items-center justify-content-center">
-        <%= paginate @pets %>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-center mt-4">
+    <%= paginate @pets %>
   </div>
 </div>

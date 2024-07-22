@@ -10,79 +10,75 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+   <body style="background-color:#c0c0c0;">
    <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
+    <header class="shadow-sm bg-dark">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3" href="/"><i class="fas fa-paw"></i>PETTERS
-            <!--<#%= image_tag('zion.jpg') %>-->
-          </a>
+          <a class="navbar-brand p-3" href="/"><i class="fas fa-paw"></i>PETTERS</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-
-            <% if user_signed_in? %>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'マイページ', user_path(current_user) %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'タイムライン', pets_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to '投稿フォーム', new_pet_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'イベント', events_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'エントリー', entries_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'ユーザー一覧', users_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-              </li>
+              
+  　　          <% if user_signed_in? %>
+      　　        <li class="nav-item p-2 g-col-6">
+          　　      <%= link_to 'MyPage', user_path(current_user) %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'Timeline', pets_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'PostForm', new_pet_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'Events', events_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'Entries', entries_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'Users', users_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+                </li>
             
-            <% else %>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'ホーム', root_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to 'イベント', events_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to "新規登録", new_user_registration_path %>
-              </li>
-              <li class="nav-item p-2 g-col-6">
-                <%= link_to "ログイン", new_user_session_path %>
-              </li>
-            <% end %>
-            </ul>
+              <% else %>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'Home', root_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to 'Events', events_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to "Registration", new_user_registration_path %>
+                </li>
+                <li class="nav-item p-2 g-col-6">
+                  <%= link_to "Login", new_user_session_path %>
+                </li>
+              <% end %>
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
-    </header>
+        </nav>
+      </header>
     
-    <main class="mb-auto">
-    <!--  <#%= flash[:notice] %>-->
-      <!--<div class="d-flex justify-content-center mb-2">-->
-      <!--  <#%= render "searches/form" %>-->
-      <!--</div>-->
-      <%= yield %>
-    </main>
-    <footer class="bg-dark text-white pt-5 pb-4">
-      <div class="container">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <p>CopyRight Petters.inc</p>
-            ※本サイトは架空のサイトになります。
+      <main class="mb-auto">
+
+        <%= yield %>
+      </main>
+      <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <p>CopyRight Petters.inc</p>
+              ※本サイトは架空のサイトになります。
             <!--<#%= image_tag('zion.jpg'), size: '20x30' %>-->
-          </div>
+            </div>
           <!--<div class="col-md-8">-->
           <!--  <h6 class="text-white mt-2 mb-3">Link</h6>-->
           <!--  <ul class="p-0 list-unstyled">-->
@@ -94,8 +90,9 @@
           <!--    </li>-->
           <!--  </ul>-->
           <!--</div>-->
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </body>
   </body>
 </html>

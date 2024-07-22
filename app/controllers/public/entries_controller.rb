@@ -1,5 +1,6 @@
 class Public::EntriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_guest_user, only: [:creat, :update]
 
   def create
     @entry = Entry.new(entry_params)
@@ -66,4 +67,13 @@ class Public::EntriesController < ApplicationController
   def event_params
     params.require(:event).permit(:event_id)
   end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      flash[:notice] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to user_path(current_user)
+    end
+  end
+
 end

@@ -1,1 +1,18 @@
 @use '~bootstrap/scss/bootstrap';
+
+.navbar .nav-item a,
+.navbar .navbar-brand 
+{
+   color: white !important;
+}
+
+.navbar .nav-item a:hover 
+{
+   color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.toplink a,
+.toplink,
+{
+  color: white !important;
+}

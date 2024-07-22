@@ -1,23 +1,33 @@
 <div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
   <%= flash[:notice] %>
 </div>
-  <div class="col-md-2 col-sm-10 mx-2 mx-sm-auto">
+<div class="col-md-2 col-sm-10 mx-2 mx-sm-auto">
   <% if current_user.id == user.id? %>
     <h3><%= current_user.name %></h3>
-    <%= image_tag current_user.get_profile_image(50,50) %>
+    <%= image_tag current_user.get_profile_image(100,100) %>
     <p><%= current_user.introduction %></p>
   <% else %>
     <h3><%= user.name %></h3>
-    <%= image_tag user.get_profile_image(50,50) %>
+    <%= image_tag user.get_profile_image(100,100) %>
     <p><%= user.introduction %></p>
   <% end %>
-    <% if current_user != user %>
-      <%= render "/public/relationships/btn", user: user %>
-    <% else %>
-      <p><%= link_to "edit profile", edit_user_path(user.id), user: user %></p>
-      <p><%= link_to "favorites", favorites_user_path(user.id) %></p>
-      
-    <% end %>
- 
-  </div>
+  <% if current_user != user %>
+    <%= render "/public/relationships/btn", user: user %>
+  <% else %>
+    <p><%= link_to "edit profile", edit_user_path(user.id), user: user %></p>
+    <p><%= link_to "favorites", favorites_user_path(user.id) %></p>
+    <table class='table'>
+      <tbody>
+        <tr>
+          <td><%= link_to "followings", user_followings_path(current_user) %></td>
+          <td><%= user.followings.count %></td>
+        </tr>
+        <tr>
+          <td><%= link_to "followers", user_followers_path(current_user) %></td>
+          <td><%= user.followers.count %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
 <!--<#%= render "/public/users/follow", users: user.followers %>-->

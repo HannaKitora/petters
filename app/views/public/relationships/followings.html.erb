@@ -1,6 +1,12 @@
-<h3>Follow Users</h3>
+<div class="container">
+  <div class="row">
+<div class="col-md-10 col-sm-10 mx-2 mx-sm-auto">
+<h3>Followings</h3>
 <% if @users.exists? %>
-  <%= render '/users/index', users: @users %>
+  <%= render 'public/users/follow', users: @users %>
 <% else %>
   <p>ユーザーはいません</p>
-<% end 
+<% end %>
+</div>
+</div>
+</div>

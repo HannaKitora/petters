@@ -4,14 +4,31 @@
   </div>
   <div class="row">
     <%= render 'layouts/list', user: @user, pets: @pets %>
-    
-    <%= render "/public/users/follow", users: @user.followers %>
-    
-
-      <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
-
+    <div class="col-md-10 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+      <div class="col-md-10 col-sm-10 mx-2 mx-sm-auto">
+        
+        <!--<table class='table'>-->
+        <!--  <thead>-->
+        <!--    <tr>-->
+        <!--      <th>followings</th>-->
+        <!--      <th>followers</th>-->
+        <!--    </tr>-->
+        <!--  </thead>-->
+        <!--  <tbody>-->
+        <!--    <tr>-->
+        <!--      <td><#%= @user.followings.count %></td>-->
+        <!--      <td><#%= @user.followers.count %></td>-->
+        <!--    </tr>-->
+        <!--  </tbody>-->
+        <!--</table>-->
+  
+      <!--<div class="col-md-4 offset-md-2 mb-10">-->
+        <!--<#%= render "/public/users/follow", users: @user.followers %>-->
+      <!--</div>-->
+      
+      <div class="col">
         <% @pets.each do |pet| %>
-        <div class="card w-50 mx-auto my-4 shadow-lg">
+        <div class="card mx-auto my-4 shadow-lg">
           <div class="row">
             <%= link_to pet_path(pet.id) do %>
               <%= image_tag pet.get_image, class: "card-img-top mx-auto py-2 px-4"; %>
@@ -52,6 +69,7 @@
           </div>
         </div>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

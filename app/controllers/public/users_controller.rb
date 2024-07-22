@@ -67,8 +67,6 @@ class Public::UsersController < ApplicationController
     params.require(:pet).permit(:name, :kind, :caption, :image)
   end
   
-  
-  
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
@@ -78,8 +76,8 @@ class Public::UsersController < ApplicationController
   end
   
   def ensure_login_user
-    # user = User.find(params[:id])
-    unless user.id == current_user.id
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
       flash[:notice]="ログインが必要です"
       redirect_to root_path
     end
