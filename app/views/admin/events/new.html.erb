@@ -1,4 +1,6 @@
+<%= render "admin/layouts/header" %>
 <div class="container py-2">
+  <%= flash.now[:danger] %> 
   <h2>Event</h2>
 
   <%= form_with url: admin_events_path, model: @event do |f| %>
@@ -14,7 +16,11 @@
             <p class="post-title">Title</p>
             <%= f.text_field :name %>
           </div>
-
+          <div class= "field">
+            <p class="post-date">Date</p>
+            <%= f.date_field :date %>
+          </div>
+          
           <div class="field">
             <p class="post-price">Price</p>
             <%= f.text_field :price %>
@@ -25,7 +31,7 @@
             <%= f.text_area :detail %>
           </div>
           <div class="action">
-            <%= f.submit 'POST', class: "btn btn-outline-info mt-3" %>
+            <%= f.submit 'POST', class: "btn btn-outline-warning mt-3" %>
           </div>
         </div>
       <% end %>

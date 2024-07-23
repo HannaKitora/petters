@@ -24,7 +24,7 @@ class Public::EntriesController < ApplicationController
   def index
     @entries = Entry.all
     @entry = Entry.new
-    # @event = Event.find(params[:event_id])
+    # @entry.event = Event.find(params[:event_id])
     @sum = 0
   end
 

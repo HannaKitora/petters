@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy]
     resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
+    resources :entries, only: [:index, :destroy]
   end
   
   scope module: :public do

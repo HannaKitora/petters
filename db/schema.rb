@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2024_07_10_120704) do
     t.integer "user_id"
     t.integer "price"
     t.integer "entry_id"
+    t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

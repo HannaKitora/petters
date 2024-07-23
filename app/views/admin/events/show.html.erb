@@ -1,3 +1,5 @@
+<%= render "admin/layouts/header" %>
+
 <div class="container">
   <div class="row">
     <div class="col-10">
@@ -5,6 +7,7 @@
       <div class="card w-100 mx-auto p-4 shadow-lg">
         <h3><%= @event.name %></h3>
         <%= image_tag @event.get_image, size: "auto" %>
+        <p class="date mt-2">Date: <%= @event.date %></p>
         <p class="price mt-2">Price: ￥ <%= @event.price %></p>
         <p class="detail"><%= @event.detail %></p>
         <%= link_to "Edit", edit_admin_event_path(@event.id), class: 'btn btn-outline-primary my-2' %>

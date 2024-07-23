@@ -1,7 +1,8 @@
 class Event < ApplicationRecord
   has_one_attached :image
   has_many :entries, dependent: :destroy
-  validates :price, presence: true
+  validates :price, numericality: { only_integer: true }, presence: true 
+  validates :date, presence: true
   
   def get_image
     unless image.attached?
@@ -28,18 +29,4 @@ class Event < ApplicationRecord
     end
   end
   
-  # def self.looks(search, word)
-  #   if search == "perfect_match"
-  #     @event = Event.where("name LIKE?","#{word}")
-  #   elsif search == "forward_match"
-  #     @event = Event.where("name LIKE?","#{word}%")
-  #   elsif search == "backward_match"
-  #     @event = Event.where("name LIKE?","%#{word}")
-  #   elsif search == "partial_match"
-  #     @event = Event.where("name LIKE?","%#{word}%")
-  #   else
-  #     @event = Event.all
-  #   end
-  # end
-
 end

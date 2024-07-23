@@ -2,13 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-
-
-<h1>Event</h1>
+      
+      <h1>Entries</h1>
      <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col col-text-center">Image</th>
+            
             <th scope="col">Event</th>
             <th scope="col">Date</th>
             <th scope="col">Price</th>
@@ -17,27 +16,21 @@
           </tr>
         </thead>
         <tbody>
-          <% @events.each do |event| %>
+          <% @entries.each do |entry| %>
             <tr>
               <td scope="row">
-                <%= link_to admin_event_path(event.id) do %>
-                  <%= image_tag event.get_image, size: '100x100' %>
+                <%= link_to admin_event_path(entry.id) do %>
+                  <%= entry.event.name %>
                 <% end %>
               </td>
               <td>
-                <%= event.name %>
+                <%= entry.event.date %>
               </td>
               <td>
-                <%= event.date %>
+                ￥<%= entry.event.price %>
               </td>
               <td>
-                ￥<%= event.price %>
-              </td>
-              <td>
-                <%= link_to 'Edit', edit_admin_event_path(event.id), class: 'btn btn-outline-primary' %>
-              </td>
-              <td>
-                <%= link_to 'Delete', admin_event_path(event.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>
+                <%= link_to 'Delete', entry_path(entry.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>
               </td>
             </tr>
           <% end %>
