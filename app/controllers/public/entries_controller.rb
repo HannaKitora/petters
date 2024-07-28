@@ -1,6 +1,10 @@
 class Public::EntriesController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:creat, :update]
+  
+  def new
+    @entry = Entry.new
+  end
 
   def create
     @entry = Entry.new(entry_params)
@@ -22,9 +26,13 @@ class Public::EntriesController < ApplicationController
   end
 
   def index
-    @entries = Entry.all
     @entry = Entry.new
-    # @entry.event = Event.find(params[:event_id])
+    @events = Event.find_by_id(params[:event_id])
+    # @entry = Entry.new(event_date: entry_params[:event_date])
+    @entry.event_date = entry_params[:event_date]
+    @entries = Entry.where("event_date > ?", Date.today).order(event_date: :asc)
+    
+    # @entries = Entry.all
     @sum = 0
   end
 
@@ -61,11 +69,12 @@ class Public::EntriesController < ApplicationController
   
   private
   def entry_params
-    params.require(:entry).permit(:amount, :event_id, :user_id)
+    # params.require(:entry).permit(:amount, :event_id, :user_id, :date)
+    params.fetch(:entry, {}).permit(:amount, :event_id, :user_id, :event_date)
   end
   
   def event_params
-    params.require(:event).permit(:event_id)
+    params.require(:event).permit(:event_id, :date)
   end
 
   def ensure_guest_user

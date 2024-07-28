@@ -1,5 +1,5 @@
 class Public::PetsController < ApplicationController
-  
+  before_action :authenticate_user!
   before_action :ensure_login_user
 
   def new
@@ -20,7 +20,13 @@ class Public::PetsController < ApplicationController
   end
 
   def index
-    @pets = Pet.page(params[:page]).order(created_at: :desc)
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    @pets = Pet.all.sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
+      a.favorites.where(created_at: from...to).size
+    }
+    @pets = Pet.page(params[:page])
     @pet = Pet.new
     @user = current_user
     @users = User.where(params[:user_id])

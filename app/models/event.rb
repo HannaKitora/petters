@@ -17,6 +17,7 @@ class Event < ApplicationRecord
    (price * 1.1).floor
   end
   
+  
   def self.search_for(content, method)
     if method == 'perfect'
       Event.where(name: content)

@@ -17,7 +17,8 @@ class Admin::EventsController < ApplicationController
   end
 
   def index
-    @events = Event.all
+    date = params[:date]
+    @events = Event.where("date > ?", Date.today).order(date: :asc)
   end
 
   def edit

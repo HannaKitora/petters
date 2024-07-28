@@ -12,8 +12,9 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.all
-    @pets = Pet.where(user_id: @user.id).order(created_at: :desc)
+    @users = @user.followings.order(created_at: :desc)
+    
+    @pets = Pet.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
   end
 
   def edit

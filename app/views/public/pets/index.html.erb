@@ -22,7 +22,7 @@
                   <% end %>
                   <div class="card-body pt-0">
                   <!--<div class="row">-->
-                  <!--  <div class="col">-->
+                    <div class="my-3">
                     <% if pet.user.present? %>
                       <%= link_to user_path(pet.user) do%>
                         <%= image_tag pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
@@ -31,9 +31,11 @@
                         <%= pet.user.name %>
                       <% end %>
                     <% end %>
-                    <p class="card-name"><i class="fas fa-paw"></i><%= pet.name %></P>
-                    <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind %></P>
+                    </div>
+                    <p class="card-name"><i class="fas fa-paw"></i> <%= pet.name %></P>
+                    <p class="card-text"><i class="fas fa-tablet-android"></i> <%= pet.kind %></P>
                     <p class="card-text"><%= pet.caption %></P>
+                    
                     <span><i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
                   </div>
                 </div>

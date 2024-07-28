@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <h1>Events</h1>
-
-    <div class="card-list-container mb-5">
+    
+      <div class="card-list-container mb-5">
       <% @events.each do |event| %>
         <div class="card mx-auto w-75 mt-4 shadow-lg">
           <h3 class="card-name mx-3 mt-2 fs-3">
@@ -16,7 +16,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <p class="card-date"><%= event.date %></p>
+                <p class="card-date"><i class="fa-solid fa-calendar-days"></i> <%= event.date %></p>
                 <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= event.price %></p>
                 <p class="card-text"><%= event.detail %></p>
               </div>

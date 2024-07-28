@@ -4,6 +4,7 @@ class Pet < ApplicationRecord
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
   
   validates :name, presence: true
   validates :kind, presence: true
@@ -17,9 +18,9 @@ class Pet < ApplicationRecord
       image
     end
   end
-    
+  
   def favorited_by?(user)
-    favorites.exists?(user_id: user.id)
+    favorites.where(user_id: user.id).exists?
   end
   
   def self.search_for(content, method)

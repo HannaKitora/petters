@@ -4,10 +4,10 @@
   <table class="table text-center">
     <tr class="table-active">
       <th>Event</th>
+      <th>Date</th>
       <th>Price</th>
       <th>amounts</th>
       <th>Subtotal</th>
-      <th><br></th>
     </tr>
     <tbody>
     <% @entries.each do |entry| %>
@@ -17,6 +17,7 @@
         　   <%= entry.event.name %>
         　<% end %>
         </td>
+        <td><%= entry.event_date %></td>
         <td><%= entry.event.with_tax_price %></td>
         <td>
           <%= entry.amount %>

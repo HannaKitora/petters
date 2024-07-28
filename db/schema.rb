@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2024_07_10_120704) do
     t.integer "user_id"
     t.integer "amount"
     t.float "tax_included_price"
+    t.date "event_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

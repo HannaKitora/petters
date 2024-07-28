@@ -4,15 +4,16 @@
 
     <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
       <div class="card mx-auto my-4 shadow-lg">
+        <h2 class="card-title m-3"><%= @event.name %></h2>
         <%= image_tag @event.image, fill: [300, 300], format: 'jpeg', class: "card-img-top mx-auto p-2"; %>
           <div class="card-body">
             <div class="row">
             <div class="col">
-              <%= @event.name %>
-              <%= @event.date %>
-              <%= @event.detail %>
-              <%= @event.with_tax_price %>
               
+              <p class="card-date"><i class="fa-solid fa-calendar-days"></i> <%= @event.date %></p>
+              
+              <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= @event.with_tax_price %></p>
+              <p class="card-text"><%= @event.detail %></p>
               <%= form_with model: @entry, url: entries_path, local: true do |f| %>
                 <%= f.label :amount, "枚数" %>
                 <%= f.select :amount, *[1..10] %>
