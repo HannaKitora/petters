@@ -12,9 +12,12 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = @user.followings.order(created_at: :desc)
-    
-    @pets = Pet.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
+    if current_user.id == @user.id
+      @users = @user.followings.order(created_at: :desc)
+      @pets = Pet.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: :desc)
+    else
+      @pets = @user.pets.page(params[:page]).order(created_at: :desc)
+    end
   end
 
   def edit

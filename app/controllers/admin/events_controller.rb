@@ -18,7 +18,7 @@ class Admin::EventsController < ApplicationController
 
   def index
     date = params[:date]
-    @events = Event.where("date > ?", Date.today).order(date: :asc)
+    @events = Event.where("date >= ?", Date.today).order(date: :asc)
   end
 
   def edit
@@ -42,8 +42,8 @@ class Admin::EventsController < ApplicationController
   end
 
   def destroy
-    event = Event.find(params[:id])
-    event.destroy
+    @events = Event.find(params[:id])
+    @events.destroy
     redirect_to admin_events_path
   end
   

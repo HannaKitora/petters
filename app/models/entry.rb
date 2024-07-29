@@ -7,4 +7,5 @@ class Entry < ApplicationRecord
     event.with_tax_price * amount
   end
   
+  
 end

@@ -20,13 +20,7 @@ class Public::PetsController < ApplicationController
   end
 
   def index
-    to = Time.current.at_end_of_day
-    from = (to - 6.day).at_beginning_of_day
-    @pets = Pet.all.sort {|a,b|
-      b.favorites.where(created_at: from...to).size <=>
-      a.favorites.where(created_at: from...to).size
-    }
-    @pets = Pet.page(params[:page])
+    @pets = Pet.left_joins(:week_favorites).group(:id).order("count(favorites.pet_id) desc").page(params[:page])
     @pet = Pet.new
     @user = current_user
     @users = User.where(params[:user_id])

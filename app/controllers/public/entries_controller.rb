@@ -27,13 +27,14 @@ class Public::EntriesController < ApplicationController
 
   def index
     @entry = Entry.new
-    @events = Event.find_by_id(params[:event_id])
+    # @events = Event.find_by_id(params[:event_id])
     # @entry = Entry.new(event_date: entry_params[:event_date])
     @entry.event_date = entry_params[:event_date]
-    @entries = Entry.where("event_date > ?", Date.today).order(event_date: :asc)
+    # @events = Event.where("event_date >= ?", Date.today).order(event_date: :asc)
     
-    # @entries = Entry.all
-    @sum = 0
+    target_event_ids = current_user.entries.select(:event_id)
+    @events = Event.where(id: target_event_ids).where("date >= ?", Date.today).order(date: :asc)
+    # @sum = 0
   end
 
   def show
@@ -44,7 +45,7 @@ class Public::EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
     if @entry.update(entry_params)
       flash[:notice] = "You have updated entry successfully."
-      redirect_to entries_path
+      render :index
     else
       flash.now[:notice]
       render :index
@@ -78,10 +79,12 @@ class Public::EntriesController < ApplicationController
   end
 
   def ensure_guest_user
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     if @user.guest_user?
-      flash[:notice] = "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      flash[:notice] = "ユーザー登録をお願いします。"
       redirect_to user_path(current_user)
+    else
+      
     end
   end
 

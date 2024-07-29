@@ -2,18 +2,14 @@
   <div class="row p-5">
     <%= render "searches/form" %>
   </div>
-  <div class="row">
-    <%= render 'layouts/list', user: @user, pets: @pets %>
+  <div class="row card-eq-height">
+    <%= render 'layouts/list', user: @user %>
     <div class="col-md-10 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
-      <div class="col-md-10 col-sm-10 mx-2 mx-sm-auto">
-        
-      
-      <div class="col">
-        <% @pets.each do |pet| %>
+      <% @pets.each do |pet| %>
         <div class="card mx-auto my-4 shadow-lg">
           <div class="row">
             <%= link_to pet_path(pet.id) do %>
-              <%= image_tag pet.get_image, class: "card-img-top mx-auto py-2 px-4"; %>
+              <%= image_tag pet.get_image(300,300), class: "card-img-top mx-auto py-2 px-4"; %>
             <% end %>
           </div>
           <div class="card-body">
@@ -37,20 +33,8 @@
                 <p class="card-text">
                   <%= pet.caption %>
                 </p>
-                <div class="favorite">
-                  <% if user_signed_in? && pet.favorited_by?(current_user) %>
-                    <p>
-                      <%= link_to pet_favorite_path(pet.id), method: :delete do %>
-                        ♥<%= pet.favorites.count %> いいね
-                      <% end %>
-                    </p>
-                  <% elsif user_signed_in? %>
-                    <p>
-                      <%= link_to pet_favorite_path(pet.id), method: :post do %>
-                        ♡<%= pet.favorites.count %> いいね
-                      <% end %>
-                    </p>
-                  <% end %>
+                <div class="favorite" id = "favorite_<%= pet.id %>">
+                  <%= render 'public/favorites/favorite', pet: pet %>
                 </div>
                 <span>
                   <i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} Comment", pet_path(pet.id), class: "text-dark" %>
@@ -60,7 +44,6 @@
           </div>
         </div>
       <% end %>
-      </div>
     </div>
   </div>
 </div>

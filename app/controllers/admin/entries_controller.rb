@@ -9,6 +9,8 @@ class Admin::EntriesController < ApplicationController
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
-    render :index
+    flash[:notice] = "You have deleted entry successfly!"
+    redirect_to admin_entries_path
+    # render :index
   end
 end
