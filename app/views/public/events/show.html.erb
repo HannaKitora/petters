@@ -1,7 +1,7 @@
 <div class="container">
+  <h1>Event</h1>
   <div class="row">
-    <h1>Event</h1>
-
+    
     <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
       <div class="card mx-auto my-4 shadow-lg">
         <h2 class="card-title m-3"><%= @event.name %></h2>
@@ -12,7 +12,7 @@
               
               <p class="card-date"><i class="fa-solid fa-calendar-days"></i> <%= @event.date %></p>
               
-              <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= @event.with_tax_price %></p>
+              <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= @event.price %>（税込 ￥<%= @event.with_tax_price %>）</p>
               <p class="card-text"><%= @event.detail %></p>
               <%= form_with model: @entry, url: entries_path, local: true do |f| %>
                 <%= f.label :amount, "枚数" %>

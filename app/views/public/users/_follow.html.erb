@@ -1,4 +1,4 @@
-<div class="col-md-10 col-sm-10 mx-2 mx-sm-auto">
+<div class="col-md-10 col-sm-10 mt-4 mx-sm-auto">
   <table class='table'>
     <thead>
       <tr>
@@ -6,7 +6,6 @@
         <th>name</th>
         <th>followings</th>
         <th>followers</th>
-        <th></th>
         <th></th>
       </tr>
     </thead>
@@ -20,15 +19,15 @@
       <td>
         <% if current_user != user %>
           <% if current_user.following?(user) %>
-            <%= link_to "unfollow", user_relationships_path(user.id), method: :delete %>
+            <%= link_to "unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-outline-secondary" %>
           <% else %>
-            <%= link_to "follow", user_relationships_path(user.id), method: :post %>
+            <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-secondary" %>
           <% end %>
         <% end %>
       </td>
-      <td>
-        <%= link_to 'Show', user, class: "user #{user.id}" %>
-      </td>
+      <!--<td>-->
+        <!--<#%= link_to 'Show', user, class: "user #{user.id}" %>-->
+      <!--</td>-->
     </tr>
     <% end %>
   </tbody>

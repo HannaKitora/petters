@@ -36,6 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :introduction
       t.integer :entry_id
+      t.boolean "is_deleted", default: false, null: false
 
       t.timestamps null: false
     end

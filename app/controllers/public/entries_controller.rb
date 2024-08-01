@@ -1,6 +1,6 @@
 class Public::EntriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_guest_user, only: [:creat, :update]
+  # before_action :ensure_guest_user, only: [:creat, :update, :edit, :new, :destroy]
   
   def new
     @entry = Entry.new
@@ -20,48 +20,46 @@ class Public::EntriesController < ApplicationController
       end
       render :thanks
     else
-      flash.now[:alert] = 'failed to entry'
+      flash.now[:alert] = 'Your entry is failed!'
       redirect_to entries_path
     end
   end
 
   def index
     @entry = Entry.new
-    # @events = Event.find_by_id(params[:event_id])
-    # @entry = Entry.new(event_date: entry_params[:event_date])
-    @entry.event_date = entry_params[:event_date]
-    # @events = Event.where("event_date >= ?", Date.today).order(event_date: :asc)
+    @entries = current_user.entries
     
-    target_event_ids = current_user.entries.select(:event_id)
-    @events = Event.where(id: target_event_ids).where("date >= ?", Date.today).order(date: :asc)
+    # target_event_ids = current_user.entries.select(:event_id)
+    # @events = Event.sort_by_date(target_event_ids)
+    # @events = Event.where("event_date >= ?", Date.today).order(event_date: :asc)
     # @sum = 0
   end
 
   def show
+    # @event = Event.find(params[:id])
     @entry = Entry.find(params[:id])
   end
   
   def update
     @entry = Entry.find(params[:id])
+   
     if @entry.update(entry_params)
       flash[:notice] = "You have updated entry successfully."
-      render :index
+      redirect_to entry_path(@entry)
     else
       flash.now[:notice]
       render :index
     end
+    
   end
   
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
-    redirect_back(fallback_location: root_path)
+    flash[:notice] = "You have deleted your entry!"
+    redirect_to entries_path
+    # redirect_back(fallback_location: root_path)
   end
-  
-  # def confirm
-  #   @entries = Entry.all
-  #   @sum = 0
-  # end
 
   def thanks
     flash[:notice] = "You have entried successfully."
@@ -78,14 +76,14 @@ class Public::EntriesController < ApplicationController
     params.require(:event).permit(:event_id, :date)
   end
 
-  def ensure_guest_user
-    @user = User.find(params[:user_id])
-    if @user.guest_user?
-      flash[:notice] = "ユーザー登録をお願いします。"
-      redirect_to user_path(current_user)
-    else
+  # def ensure_guest_user
+  #   @user = User.find(params[:user_id])
+  #   if @user.guest_user?
+  #     flash[:notice] = "ユーザー登録をお願いします。"
+  #     redirect_to user_path(current_user)
+  #   else
       
-    end
-  end
+  #   end
+  # end
 
 end

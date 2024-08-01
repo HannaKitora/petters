@@ -66,7 +66,7 @@ class Public::PetsController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:name, :profile_image, :introduction)
+    params.require(:user).permit(:name, :profile_image, :introduction, :user_id)
   end
   
   def ensure_login_user

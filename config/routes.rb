@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get "/homes/about" => "homes#about", as: "about"
     get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe' #退会確認画面
     patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal' #論理削除
+    get "/homes/goodbye" => "homes#goodbye", as: "goodbye"
     
     resources :pets, only: [:new, :create, :index, :show, :destroy] do
       resource :favorite, only: [:create, :destroy]

@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row">
+    <!--<#% if user_signed_in? %>-->
+    <!--  <#%= render 'layouts/list', user: @user %>-->
+    <!--<#% end %>-->
     <div class="col-12">
       <%= flash[:notice] %>
     </div>
@@ -25,15 +28,16 @@
       <!--<p>Comment counts：<#%= @pet.comments.count %></p>-->
         <div class="comment-list">
           <% @pet.comments.each do |comment| %>
-            <!--<p><#%= image_tag comment.user.get_profile_image, size: '20x20', class: "rounded-circle"; %></p>-->
+            <!--<#%= image_tag comment.user.get_profile_image, size: '20x20', class: "rounded-circle"; %>-->
             <p>
-              <%= comment.user.name %>
-              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <strong><%= comment.user.name %> ></strong>
               <%= comment.comment_content %>
-            
-              <% if comment.user == current_user %>
-                <%= link_to "Delete", pet_comment_path(comment.pet, comment), method: :delete %>
-              <% end %>
+              <div class="d-flex flex-row-reverse">
+                <%= comment.created_at.strftime('%Y/%m/%d') %>
+                <% if comment.user == current_user %>
+                  <%= link_to "Delete", pet_comment_path(comment.pet, comment), method: :delete %>
+                <% end %>
+              </div>
             </p>
           <% end %>
           <%= form_with model: [@pet, @comment] do |f| %>

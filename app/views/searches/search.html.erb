@@ -1,7 +1,7 @@
-<div class="container">
+<!--<div class="container">-->
   <% if user_signed_in? %>
-    <%= render 'layouts/list', user: @user, pets: @pets %>
-    <%= render "searches/form" %>
+<!--    <#%= render 'layouts/list', user: @user, pets: @pets %>-->
+<!--    <#%= render "searches/form" %>-->
     
     <div class="col-10">
     <% if @model == 'user' %>
@@ -15,6 +15,5 @@
       <%= render 'public/events/index', events: @records %>
     <% end %>
     </div>
-
   <% end %>
-</div>
+<!--</div>-->

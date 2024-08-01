@@ -1,3 +1,6 @@
+<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
+  <%= flash[:notice] %>
+</div>
 <div class="container">
   <div class="row">
 <h1>Entries</h1>
@@ -10,22 +13,25 @@
       <th>Subtotal</th>
     </tr>
     <tbody>
-    <% @events.each do |event| %>
+    <% @entries.each do |entry| %>
       <tr>
         <td>
-          <%= link_to event_path(event.id) do %>
-            <%= event.name %>
+          
+          <%= link_to entry_path(entry) do %>
+            <%= entry.event.name %>
           <% end %>
         </td>
-        <td><%= event.date %></td>
-        <td><%= event.with_tax_price %></td>
-        <!--<td>-->
-        <!--  <#%= event.entry.amount %>-->
-        <!--</td>-->
-        <!--<td>-->
-        <!--  <#%= event.entry.subtotal %>-->
-        <!--</td>-->
+        <td><%= entry.event.date %></td>
+        <td><%= entry.event.with_tax_price %></td>
+        <td>
+          <%= entry.amount %>
+        </td>
+        <td>
+          <%= entry.subtotal %>
+        </td>
       </tr>
+      
+      
       <!--<#% @sum += event.entry.subtotal %>-->
     <% end %>
     </tbody>

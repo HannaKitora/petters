@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   end
   
   def with_tax_price
-   (price * 1.1).floor
+  (price * 1.1).floor
   end
   
   
@@ -28,6 +28,22 @@ class Event < ApplicationRecord
     else
       Event.where('name LIKE ?', '%' + content + '%')
     end
+  end
+  
+  def total_amount(current_user)
+    entries.where(user_id: current_user.id).sum(:amount) 
+  end
+  
+  def total_price(current_user)
+    price = 0
+    entries.where(user_id: current_user.id).each do |entry|
+      price += entry.amount * (entry.event.price + entry.event.price * 0.1)
+    end
+    price.to_i
+  end
+  
+  def self.sort_by_date(ids)
+     where(id: ids).where("date >= ?", Date.today).order(date: :asc)
   end
   
 end

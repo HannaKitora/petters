@@ -1,6 +1,12 @@
-<h3>Followers</h3>
-<% if @users.exists? %>
-  <%= render 'public/users/follow', users: @users %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-sm-10 m-2 mx-sm-auto">
+      <h3>Followers</h3>
+      <% if @users.exists? %>
+        <%= render 'public/users/follow', users: @users %>
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>
