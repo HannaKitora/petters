@@ -16,19 +16,23 @@
             <div class="row">
               <div class="col">
                 <div class="mb-2">
-                  <%= link_to user_path(pet.user) do%>
-                    <%= image_tag pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
-                  <% end %>
-                  <%= link_to user_path(pet.user) do%>
-                    <%= pet.user.name %>
+                  <% if @user.is_deleted == false %>
+                    <%= link_to user_path(pet.user) do%>
+                      <%= image_tag pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
+                    <% end %>
+                    <%= link_to user_path(pet.user) do%>
+                      <%= pet.user.name %>
+                    <% end %>
+                  <% else %>
+                    <p class="card-name"><i class="fas fa-user"></i>退会済のユーザーです</p>
                   <% end %>
                 </div>
                       
                 <p class="card-name">
-                  <i class="fas fa-paw"></i> <%= link_to pet.name, pet_path(pet.id) %>
+                  <i class="fas fa-paw"></i>　<%= link_to pet.name, pet_path(pet.id) %>
                 </p>
                 <p class="card-text">
-                  <i class="fas fa-tablet-android"></i> <%= pet.kind %>
+                  <i class="fas fa-tablet-android"></i>　<%= pet.kind %>
                 </p>
                 <p class="card-text">
                   <%= pet.caption %>

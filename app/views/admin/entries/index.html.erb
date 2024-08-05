@@ -11,7 +11,8 @@
             <th scope="col">Event</th>
             <th scope="col">Date</th>
             <th scope="col">Price</th>
-            <th></th>
+            <th scope="col">User</th>
+            <th scope="col">Amount</th>
             <th></th>
           </tr>
         </thead>
@@ -19,7 +20,7 @@
           <% @entries.each do |entry| %>
             <tr>
               <td scope="row">
-                <%= link_to admin_event_path(entry.id) do %>
+                <%= link_to admin_event_path(entry.event.id) do %>
                   <%= entry.event.name %>
                 <% end %>
               </td>
@@ -28,6 +29,12 @@
               </td>
               <td>
                 ￥<%= entry.event.price %>
+              </td>
+              <td>
+                <%= entry.user.name %>
+              </td>
+              <td>
+                <%= entry.amount %>
               </td>
               <td>
                 <%= link_to 'Delete', admin_entry_path(entry.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>

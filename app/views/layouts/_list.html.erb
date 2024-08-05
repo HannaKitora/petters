@@ -7,9 +7,13 @@
     <%= image_tag current_user.get_profile_image(100,100) %>
     <p><%= current_user.introduction %></p>
   <% else %>
-    <h3><%= user.name %></h3>
-    <%= image_tag user.get_profile_image(100,100) %>
-    <p><%= user.introduction %></p>
+    <% if user.is_deleted == false %>
+      <h3><%= user.name %></h3>
+      <%= image_tag user.get_profile_image(100,100) %>
+      <p><%= user.introduction %></p>
+    <% else %>
+      <p class="card-name"><i class="fas fa-user"></i>退会済のユーザーです</p>
+    <% end %>
   <% end %>
   <% if current_user != user %>
     <%= render "/public/relationships/btn", user: user %>

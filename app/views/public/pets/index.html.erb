@@ -23,13 +23,16 @@
                   <div class="card-body pt-0">
                   <!--<div class="row">-->
                     <div class="my-3">
-                    <% if pet.user.present? %>
+                    <% if pet.user.is_deleted == false %>
                       <%= link_to user_path(pet.user) do%>
                         <%= image_tag pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
                       <% end %>
                       <%= link_to user_path(pet.user) do%>
                         <%= pet.user.name %>
                       <% end %>
+                    <% else %>
+                      <p class="card-name"><i class="fas fa-user"></i>
+                      退会済のユーザーです</p>
                     <% end %>
                     </div>
                     <p class="card-name"><i class="fas fa-paw"></i> <%= pet.name %></P>

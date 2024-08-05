@@ -12,17 +12,25 @@
   <tbody>
     <% users.each do |user| %>
     <tr>
-      <td><%= image_tag user.get_profile_image(50,50) %></td>
-      <td><%= link_to user.name, user_path(user.id) %></td>
+      <% if user.is_deleted == false %>
+        <td><%= image_tag user.get_profile_image(50,50) %></td>
+        <td><%= link_to user.name, user_path(user.id) %></td>
+      <% else %>
+        <td><p class="card-name"><i class="fas fa-user"></i>退会済のユーザーです</p></td>
+        <td></td>
+      <% end %>
       <td><%= user.followings.count %></td>
       <td><%= user.followers.count %></td>
       <td>
-        <% if current_user != user %>
-          <% if current_user.following?(user) %>
-            <%= link_to "unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-outline-secondary" %>
-          <% else %>
-            <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-secondary" %>
+        <% if user.is_deleted == false %>
+          <% if current_user != user %>
+            <% if current_user.following?(user) %>
+              <%= link_to "unfollow", user_relationships_path(user.id), method: :delete, class: "btn btn-outline-secondary" %>
+            <% else %>
+              <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-secondary" %>
+            <% end %>
           <% end %>
+        <% else %>
         <% end %>
       </td>
       <!--<td>-->

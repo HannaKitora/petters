@@ -4,16 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :pets, dependent: :delete_all
-  has_many :comments, dependent: :delete_all
+  has_many :pets
+  has_many :comments
   has_one_attached :profile_image
-  has_many :favorites, dependent: :delete_all
-  has_many :entries, dependent: :delete_all
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: "followed_id", dependent: :delete_all
-  has_many :followers, through: :reverse_of_relationships, source: :follower, dependent: :delete_all
+  has_many :favorites
+  has_many :entries
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: "followed_id"
+  has_many :followers, through: :reverse_of_relationships, source: :follower
   
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :delete_all
-  has_many :followings, through: :relationships, source: :followed, dependent: :delete_all
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id"
+  has_many :followings, through: :relationships, source: :followed
   
   GUEST_USER_EMAIL = "guest@example.com"
 

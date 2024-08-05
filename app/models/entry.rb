@@ -1,6 +1,8 @@
 class Entry < ApplicationRecord
   belongs_to :event
-  has_many :users, dependent: :destroy
+  belongs_to :user
+  
+  validates :user_id, uniqueness: {scope: :event_id}
   
   
   def subtotal

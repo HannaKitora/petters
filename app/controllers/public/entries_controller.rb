@@ -20,7 +20,7 @@ class Public::EntriesController < ApplicationController
       end
       render :thanks
     else
-      flash.now[:alert] = 'Your entry is failed!'
+      flash[:notice] = 'Your entry has been failed!'
       redirect_to entries_path
     end
   end

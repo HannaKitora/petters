@@ -19,12 +19,17 @@
           <% @users.each do |user| %>
             <tbody>
               <tr>
-                <th scope="col">
-                  <%= image_tag user.get_profile_image(50,50) %>
-                </th>
-                <th scope="col">
-                  <%= user.name %>
-                </th>
+                <% if user.is_deleted == false %>
+                  <th scope="col">
+                    <%= image_tag user.get_profile_image(50,50) %>
+                  </th>
+                  <th scope="col">
+                    <%= user.name %>
+                  </th>
+                <% else %>
+                  <th scope="col">退会済のユーザーです</th>
+                  <th></th>
+                <% end %>
                 <th scope="col">
                   <%= link_to "Show", user_path(user.id) %>
                 </th>

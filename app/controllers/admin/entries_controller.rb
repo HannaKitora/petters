@@ -4,6 +4,7 @@ class Admin::EntriesController < ApplicationController
   def index
     @entries = Entry.all
     @events = Event.where(params[:event_id])
+    user = User.find_by(params[:user_id])
   end
   
   def destroy

@@ -27,7 +27,11 @@
             <%= user.email %>
           </th>
           <th>
-            <%= link_to 'Destroy', admin_user_path(user), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>
+            <% if user.is_deleted == false %>
+              <%= link_to 'Destroy', admin_user_path(user), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>
+            <% else %>
+            退会済
+            <% end %>
           </th>
         </tr>
       <% end %>
