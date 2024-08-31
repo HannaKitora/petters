@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'calendar/index'
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
@@ -39,5 +40,6 @@ Rails.application.routes.draw do
     # get 'entries/thanks'
     resources :entries, only: [:create, :index, :destroy, :update, :show]
   end
+  resources :notifications, only: [:update]
   get "/search" => "searches#search"
 end
