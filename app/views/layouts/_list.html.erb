@@ -1,7 +1,8 @@
-<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
-  <%= flash[:notice] %>
-</div>
+<!--<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">-->
 <div class="col-md-2 col-sm-10 mx-2 mx-sm-auto">
+  <%= flash[:notice] %>
+<!--</div>-->
+
   <% if current_user.id == user.id? %>
     <h3><%= current_user.name %></h3>
     <%= image_tag current_user.get_profile_image(100,100) %>
@@ -20,6 +21,8 @@
   <% else %>
     <p><%= link_to "edit profile", edit_user_path(user.id), user: user %></p>
     <p><%= link_to "favorites", favorites_user_path(user.id) %></p>
+    <p><%= link_to "Entries", entries_path %></p>
+    
     <table class='table'>
       <tbody>
         <tr>

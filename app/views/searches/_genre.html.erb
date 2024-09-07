@@ -1,0 +1,8 @@
+  <!--ジャンル絞り込み-->
+
+    <%= form_with method: :get, url: pets_path do |f| %>
+      <%= f.collection_select :kind, pets, :kind, :kind, prompt: "種類を選択してください" %>
+
+      <%= f.submit "絞り込む" %>
+    <% end %>
+    

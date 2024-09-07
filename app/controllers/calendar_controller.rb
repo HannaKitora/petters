@@ -1,5 +1,5 @@
 class CalendarController < ApplicationController
   def index
-    @calender = Calender.all
+    @evntries = Entry.all
   end
 end

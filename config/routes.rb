@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  get 'calendar/index'
+  get 'calendar' => 'calendar#index'
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
   }
   namespace :admin do
     get 'dashboards', to: 'dashboards#index'
+    resources :kinds
     resources :users, only: [:destroy]
     resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :entries, only: [:index, :destroy]
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
     end
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
+    get '/events/index', to: 'events#index', defaults: { format: 'json' }
     # get 'entries/confirm'
     post '/entries/thanks', to: 'public/entries#thanks'
     # get 'entries/thanks'

@@ -1,8 +1,12 @@
 <div class="container">
   <div class="row p-5">
     <%= render "searches/form" %>
-  </div>
+    <%= render "searches/genre", pets: @pets %>
+  
+    
+    </div>
   <div class="row">
+    
     <!--<div class="col-md-2 col-sm-10">-->
       <% if user_signed_in? %>
         <%= render 'layouts/list', user: @user, pets: @pets %>

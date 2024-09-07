@@ -5,6 +5,7 @@ class Pet < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
+  has_one_attached :kind
   
   validates :name, presence: true
   validates :kind, presence: true
@@ -34,6 +35,7 @@ class Pet < ApplicationRecord
       Pet.where('name LIKE ?', '%' + content + '%')
     end
   end
+  
   
   # def self.looks(search, word)
   #   if search == "perfect_match"

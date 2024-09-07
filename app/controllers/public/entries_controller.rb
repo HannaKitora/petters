@@ -26,8 +26,11 @@ class Public::EntriesController < ApplicationController
   end
 
   def index
+    
     @entry = Entry.new
     @entries = current_user.entries
+    # date = params[:event_date]
+    # @events = @entries.event.where("event_date > ?", Date.today).order(event_date: :asc)
     
     # target_event_ids = current_user.entries.select(:event_id)
     # @events = Event.sort_by_date(target_event_ids)

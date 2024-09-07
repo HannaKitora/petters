@@ -1,0 +1,28 @@
+<%= render "admin/layouts/header" %>
+
+      
+      <!--ジャンル登録-->
+<div class="container py-5">
+  <div class="row mt-4 md-px-20 sm-px-10 p-4">
+
+    <h2>Registration of Kind</h2>
+    <div class="col col-10">
+      <%= form_with model: @kind, url: admin_kinds_path do |f| %>
+        <div class="body">
+          <div class="col">
+            <div class="field">
+              <p class="registration-kind">
+                <i class="fas fa-tablet-android"></i>Kind
+              </p>
+              <%= f.text_field :kind %>
+            </div>
+          </div>
+          <div class="action">
+            <%= f.submit 'Create Kind', class: "btn btn-warning mt-2" %>
+         </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render 'admin/kinds/index', kinds: @kinds %>

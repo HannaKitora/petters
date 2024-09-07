@@ -1,0 +1,23 @@
+<%= render "admin/layouts/header" %>
+<div class="container">
+  <h1>Kind Edit</h1>
+  
+  <% if @event.errors.any? %>
+    <%= @event.errors.count %>error prohibited this obj from being saved:
+    <ul>
+      <% @event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+  <div class="row">
+    <%= form with url: admin_kind_path(@kind.id), modek: @kind, method: :patch do |f| %>
+    <label for="inputKind">Kind</label>Kind
+    <br>
+    <%= f.text_field :kind, autofocus: true, id:"inputKind" %>
+    <%= f.submit "Update Kind", class: "btn btn-warning my-3" %>
+    <br>
+    <%= link_to "Back", new_admin_kind_path %>
+  </div>
+</div>

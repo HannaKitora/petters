@@ -9,7 +9,7 @@
         <div class="card mx-auto my-4 shadow-lg">
           <div class="row">
             <%= link_to pet_path(pet.id) do %>
-              <%= image_tag pet.get_image(300,300), class: "card-img-top mx-auto py-2 px-4"; %>
+              <%= image_tag pet.get_image(200,200), class: "card-img-top py-2 px-4"; %>
             <% end %>
           </div>
           <div class="card-body">
@@ -18,7 +18,7 @@
                 <div class="mb-2">
                   <% if @user.is_deleted == false %>
                     <%= link_to user_path(pet.user) do%>
-                      <%= image_tag pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
+                      <%= image_tag pet.user.get_profile_image(20,20), class: "rounded-circle"; %>
                     <% end %>
                     <%= link_to user_path(pet.user) do%>
                       <%= pet.user.name %>

@@ -24,6 +24,10 @@ class Public::PetsController < ApplicationController
     @pet = Pet.new
     @user = current_user
     @users = User.where(params[:user_id])
+    
+    # byebug
+    # Pet.where("kind LIKE ?", "%#{params[:kind]}%")
+    Pet.where(kind: params[:kind])
       
   end
 

@@ -2,7 +2,15 @@ class Public::EventsController < ApplicationController
   
   def index
     date = params[:date]
-    @events = Event.where("date > ?", Date.today).order(date: :asc)
+    @events = Event.where("date >= ?", Date.today).order(date: :asc)
+    # @events = @events.map do |event|
+    #   event.define_singleton_method(:title) { event.name }
+    #   event
+    # end
+    respond_to do |format|
+      format.html
+      format.json { render 'calendar' }
+    end
   end
 
   def show
@@ -25,7 +33,7 @@ class Public::EventsController < ApplicationController
   private
   
   def admin_event_params
-    params.require(:event).permit(:name, :image, :price, :detail, :date)
+    params.require(:event).permit(:title, :image, :price, :detail, :date)
   end
 
 end

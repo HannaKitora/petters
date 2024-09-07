@@ -26,7 +26,8 @@
             </div>
             <div class="field pb-4">
               <p class="post-name"><i class="fas fa-tablet-android"></i> kind</p>
-              <%= f.text_field :kind %>
+              <!--adminで登録-->
+              <%= f.collection_select(:kind_id, Kind.all, :id, :kind, prompt: "種類を選択してください") %>
             </div>
             <div class="field pd-4">
               <p class="post-name">caption</p>

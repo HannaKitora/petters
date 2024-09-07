@@ -25,7 +25,7 @@
                 <% end %>
               </td>
               <td>
-                <%= event.name %>
+                <%= event.title %>
               </td>
               <td>
                 <%= event.date %>
@@ -37,12 +37,12 @@
                 <%= link_to 'Edit', edit_admin_event_path(event.id), class: 'btn btn-outline-primary' %>
               </td>
               <td>
-                <%= link_to 'Delete', admin_event_path(event.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure？' } %>
+                <%= link_to 'Delete', admin_event_path(event.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure?' } %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
-       </div>
+    </div>
   </div>
 </div>

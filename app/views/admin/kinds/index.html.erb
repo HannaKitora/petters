@@ -1,0 +1,22 @@
+<%= render "admin/layouts/header" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 my-3">
+      
+      <h3>Kind List</h3>
+      <table class="table">
+        <tbody>
+          <% @kinds.each do |kind| %>
+            <tr>
+              <td>No. <%= kind.id %></td>
+              <td><%= kind.kind %></td>
+              <td><%= link_to 'Edit', edit_admin_kind_path(kind.id), class: 'btn btn-outline-primary' %></td>
+              <td><%= link_to 'Delete', admin_kind_path(kind.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

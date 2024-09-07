@@ -15,7 +15,7 @@
     <%= form_with url: admin_event_path(@event.id), model: @event, method: :patch do |f| %>
       <label for="inputName">Title</label>
       <br>
-      <%= f.text_field :name, autofocus: true, id:"inputName" %>
+      <%= f.text_field :title, autofocus: true, id:"inputName" %>
       <br>
       <label for="inputDate">Date</label>
       <br>

@@ -22,3 +22,16 @@
 display: flex;
 flex-wrap: wrap;
 }
+
+
+.fc-day-sat {
+  .fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
+    color: blue;
+  }
+}
+
+.fc-day-sun {
+  .fc-daygrid-day-top, .fc-scrollgrid-sync-inner .fc-col-header-cell-cushion, .fc-list-day-cushion {
+    color: red;
+  }
+}
