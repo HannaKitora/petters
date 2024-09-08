@@ -8,7 +8,7 @@
             <td>No. <%= kind.id %></td>
             <td><%= kind.kind %></td>
             <td><%= link_to 'Edit', edit_admin_kind_path(kind.id), class: 'btn btn-outline-primary' %></td>
-            <td><%= link_to 'Delete', admin_kind_path(kind.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to 'Destroy', admin_kind_path(kind.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
       </tbody>

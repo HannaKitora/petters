@@ -20,6 +20,7 @@ class Admin::KindsController < ApplicationController
   
   def index
     @kinds = Kind.all
+    # @kind = Kind.find(params[:id])
   end
   
   def edit
@@ -38,8 +39,8 @@ class Admin::KindsController < ApplicationController
   end
   
   def destroy
-    @kinds = Kind.find(params[:id])
-    @kinds.destroy
+    @kind = Kind.find(params[:id])
+    @kind.destroy
     flash[:notice] = "Deleted kind!!"
     redirect_to new_admin_kind_path
   end
