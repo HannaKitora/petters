@@ -12,6 +12,11 @@ class SearchesController < ApplicationController
       @records = User.search_for(@content, @method)
     elsif @model  == "pet"
       @records = Pet.search_for(@content, @method)
+      if params[:kind_id]
+        @records = @records.where(kind_id: params[:kind_id]).page(params[:page])
+      else
+        @records = Pet.search_for(@content, @method)
+      end
     elsif @model == "event"
       @records = Event.search_for(@content, @method)
     end

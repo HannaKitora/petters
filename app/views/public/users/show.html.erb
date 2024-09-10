@@ -4,9 +4,9 @@
   </div>
   <div class="row card-eq-height">
     <%= render 'layouts/list', user: @user %>
-    <div class="col-md-10 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto">
       <% @pets.each do |pet| %>
-        <div class="card mx-auto my-4 shadow-lg">
+        <div class="card mx-auto my-4 p-3 shadow-lg">
           <div class="row">
             <%= link_to pet_path(pet.id) do %>
               <%= image_tag pet.get_image(200,200), class: "card-img-top py-2 px-4"; %>
@@ -32,7 +32,7 @@
                   <i class="fas fa-paw"></i>　<%= link_to pet.name, pet_path(pet.id) %>
                 </p>
                 <p class="card-text">
-                  <i class="fas fa-tablet-android"></i>　<%= pet.kind %>
+                  <i class="fas fa-tablet-android"></i>　<%= pet.kind.kind %>
                 </p>
                 <p class="card-text">
                   <%= pet.caption %>

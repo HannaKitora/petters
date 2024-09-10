@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2024_09_07_003245) do
 
   create_table "kinds", force: :cascade do |t|
     t.string "kind"
+    t.integer "pet_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -114,9 +115,9 @@ ActiveRecord::Schema.define(version: 2024_09_07_003245) do
 
   create_table "pets", force: :cascade do |t|
     t.string "name"
-    t.string "kind"
     t.text "caption"
     t.integer "user_id"
+    t.integer "kind_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -39,8 +39,8 @@ class Admin::KindsController < ApplicationController
   end
   
   def destroy
-    @kind = Kind.find(params[:id])
-    @kind.destroy
+    @kinds = Kind.find(params[:id])
+    @kinds.destroy
     flash[:notice] = "Deleted kind!!"
     redirect_to new_admin_kind_path
   end

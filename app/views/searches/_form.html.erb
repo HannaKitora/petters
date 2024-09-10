@@ -4,6 +4,8 @@
           <%= f.text_field :content %>
           <%= f.select :model, options_for_select({"User" => "user", "Event" => "event", "Pet" => "pet"}) %>
           <%= f.select :method, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
+          <%= f.collection_select(:kind_id, Kind.all, :id, :kind, prompt: "種類を選択してください") %>
+          
           <%= f.submit "検索" %>
         <% end %>
   <% end %>

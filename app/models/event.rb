@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   
   def self.search_for(content, method)
     if method == 'perfect'
-      Event.where(name: content)
+      Event.where(title: content)
     elsif method == 'forward'
       Event.where('name LIKE ?', content + '%')
     elsif method == 'backward'

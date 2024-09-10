@@ -25,9 +25,9 @@ class Public::PetsController < ApplicationController
     @user = current_user
     @users = User.where(params[:user_id])
     
-    # byebug
-    # Pet.where("kind LIKE ?", "%#{params[:kind]}%")
-    Pet.where(kind: params[:kind])
+    if params[:kind_id]
+      @pets = Pet.where(kind_id: params[:kind_id]).page(params[:page])
+    end
       
   end
 
@@ -66,7 +66,7 @@ class Public::PetsController < ApplicationController
   private
   
   def pet_params
-    params.require(:pet).permit(:name, :image, :kind, :caption)
+    params.require(:pet).permit(:name, :image, :kind_id, :caption)
   end
   
   def user_params

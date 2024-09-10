@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row p-5">
     <%= render "searches/form" %>
-    <%= render "searches/genre", pets: @pets %>
-  
-    
-    </div>
+    <!--<#%= render "searches/genre", pets: @pets %>-->
+  </div>
   <div class="row">
     
     <!--<div class="col-md-2 col-sm-10">-->
@@ -12,7 +10,7 @@
         <%= render 'layouts/list', user: @user, pets: @pets %>
       <% end %>
     <!--</div>-->
-    <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+    <div class="col-md-8 col-sm-10 mx-2 mx-sm-auto">
       <h1>Pets</h1>
       <div class="card-list-container-fluid">
         <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -40,7 +38,7 @@
                     <% end %>
                     </div>
                     <p class="card-name"><i class="fas fa-paw"></i> <%= pet.name %></P>
-                    <p class="card-text"><i class="fas fa-tablet-android"></i> <%= pet.kind %></P>
+                    <p class="card-text"><i class="fas fa-tablet-android"></i> <%= pet.kind.kind %></P>
                     <p class="card-text"><%= pet.caption %></P>
                     <div class id="favorite_<%= pet.id %>">
                       <%= render 'public/favorites/favorite', pet: pet %>
@@ -61,7 +59,7 @@
                   <div class="row">
                     <div class="col">
                       <p class="card-name"><i class="fas fa-paw"></i><%= pet.name %></P>
-                      <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind %></P>
+                      <p class="card-text"><i class="fas fa-tablet-android"></i><%= pet.kind.kind %></P>
                       <p class="card-text"><%= pet.caption %></P>
                       <span><i class="fa-regular fa-comment"></i> <%= link_to "#{pet.comments.count} コメント", pet_path(pet.id), class: "text-dark" %></span>
                     </div>

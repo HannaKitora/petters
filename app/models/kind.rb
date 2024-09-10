@@ -1,4 +1,3 @@
 class Kind < ApplicationRecord
-  has_many :pets, dependent: :destroy
-  
+  has_many :pets
 end

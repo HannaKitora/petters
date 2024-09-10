@@ -1,24 +1,21 @@
-    <script>
-      let eventData = <%= raw @events.to_json %>;
-    </script>
-    <div id="calendar"></div>
-    
     <div class="card-list-container py-5">
-  <% events.each do |event| %>
-    <div class="card mx-auto w-75 mt-4 shadow-lg">
-      <h3 class="card-name mx-3 mt-2"><%= event.title %></h3>
-      <%= link_to event_path(event.id) do %>
-        <%= image_tag event.get_image, class: "card-img-top mx-auto p-2"; %>
-      <% end %>
-      <div class="card-body">
-        <div class="row">
-          <div class="col">
-            <p class="card-date"><%= event.date %></p>
-            <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= event.price %></p>
-            <p class="card-text"><%= event.detail %></p>
+      <% events.each do |event| %>
+        <div class="card mx-auto w-75 mt-4 shadow-lg">
+          <h3 class="card-name mx-3 mt-2">
+            <%= event.title %>
+          </h3>
+          <%= link_to event_path(event.id) do %>
+            <%= image_tag event.get_image, class: "card-img-top mx-auto p-2"; %>
+          <% end %>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <p class="card-date"><i class="fa-solid fa-calendar-days"></i> <%= event.date %></p>
+                <p class="card-price"><i class="fa-solid fa-coins"></i> ￥<%= event.price %></p>
+                <p class="card-text"><%= event.detail %></p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
-  <% end %>
-</div>

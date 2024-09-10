@@ -12,7 +12,7 @@
         <div class="post-detail my-4">
           <%= image_tag @pet.get_image(60,60), class: "card-img-top mx-auto p-2" %>
           <p class="card-name"><i class="fas fa-paw"></i> name：<%= @pet.name %></p>
-          <p class="card-text"><i class="fas fa-tablet-android"></i> kind：<%= @pet.kind %></p>
+          <p class="card-text"><i class="fas fa-tablet-android"></i> kind：<%= @pet.kind.kind %></p>
           <p class="card-text">caption：<%= @pet.caption %></p>
           <%= image_tag @pet.user.get_profile_image(30,30), class: "rounded-circle"; %>
           <%= @pet.user.name %>

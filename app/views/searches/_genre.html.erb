@@ -1,8 +1,9 @@
+<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
+  <% if user_signed_in? %>
   <!--ジャンル絞り込み-->
-
     <%= form_with method: :get, url: pets_path do |f| %>
-      <%= f.collection_select :kind, pets, :kind, :kind, prompt: "種類を選択してください" %>
-
+      <%= f.collection_select(:kind_id, Kind.all, :id, :kind, prompt: "種類を選択してください") %>
       <%= f.submit "絞り込む" %>
     <% end %>
-    
+  <% end %>
+</div>

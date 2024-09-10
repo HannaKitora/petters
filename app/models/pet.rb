@@ -5,10 +5,10 @@ class Pet < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
-  has_one_attached :kind
+  belongs_to :kind
   
   validates :name, presence: true
-  validates :kind, presence: true
+  # validates :kind, presence: true
   validates :image, presence: true
 
   def get_image(width, height)
@@ -35,20 +35,5 @@ class Pet < ApplicationRecord
       Pet.where('name LIKE ?', '%' + content + '%')
     end
   end
-  
-  
-  # def self.looks(search, word)
-  #   if search == "perfect_match"
-  #     @pet = Pet.where("name LIKE?","#{word}")
-  #   elsif search == "forward_match"
-  #     @pet = Pet.where("name LIKE?","#{word}%")
-  #   elsif search == "backward_match"
-  #     @pet = Pet.where("name LIKE?","%#{word}")
-  #   elsif search == "partial_match"
-  #     @pet = Pet.where("name LIKE?","%#{word}%")
-  #   else
-  #     @pet = Pet.all
-  #   end
-  # end
   
 end
