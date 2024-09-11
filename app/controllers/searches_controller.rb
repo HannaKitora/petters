@@ -8,14 +8,12 @@ class SearchesController < ApplicationController
     @method = params[:method]
     
     # 選択したモデルに応じて検索を実行
-    if @model  == "user"
+    if @model == "user"
       @records = User.search_for(@content, @method)
-    elsif @model  == "pet"
+    elsif @model== "pet"
       @records = Pet.search_for(@content, @method)
-      if params[:kind_id]
+      if params[:kind_id].present?
         @records = @records.where(kind_id: params[:kind_id]).page(params[:page])
-      else
-        @records = Pet.search_for(@content, @method)
       end
     elsif @model == "event"
       @records = Event.search_for(@content, @method)
