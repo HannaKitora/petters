@@ -11,6 +11,15 @@ class Public::EventsController < ApplicationController
       format.html
       format.json { render 'calendar' }
     end
+    
+    respond_to do |format|
+      format.html do
+        @events = Event.page(params[:page])
+      end
+      format.json do
+        @events = Event.all
+      end
+    end
   end
 
   def show
@@ -33,7 +42,7 @@ class Public::EventsController < ApplicationController
   private
   
   def admin_event_params
-    params.require(:event).permit(:title, :image, :price, :detail, :date)
+    params.require(:event).permit(:title, :image, :price, :detail, :date, :event_address)
   end
 
 end

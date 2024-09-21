@@ -1,0 +1,15 @@
+<h2>注文確認</h2>
+
+<table class>
+  <tr>
+    <td>支払方法</td>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <td>住所</td>
+    <td><%= @order.full_address %></td>
+  </tr>
+  
+</table>
+
+<%= link_to "order", entries_thanks_path %>

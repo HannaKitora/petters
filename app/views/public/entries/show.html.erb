@@ -1,36 +1,36 @@
-<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
-  <%= flash[:notice] %>
-</div>
-<div class="container">
-  <h1>Entry</h1>
-　 <div class="row">
-　  <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
-      <div class="card mx-auto my-4 shadow-lg">
-        <div class="card-body m-3">
-          <div class="row">
-            <div class="col">
-              <h3 class="card-name mx-3 mt-2"><i class="far fa-calendar-check"></i>
-                <%= @entry.event.title %>
-              </h3>
-              <%= image_tag @entry.event.image, fill: [200, 200], format: 'jpeg', class: "card-img-top mx-auto p-2"; %>
-              <div class="card-price ml-4 mt-4"><i class="fa-solid fa-coins"></i>
-                ￥ <%= @entry.event.with_tax_price %>
-              </div>
-              <div class="my-3">
-                <%= form_with model: @entry, url: entry_path(@entry.id), local: true do |f| %>
-      　        　  <%= f.select :amount, *[1..10] %>
-                  <%= f.submit "Edit", class: "btn btn-success" %>
-                <% end %>
-              </div>
-              <div class="card-subtotal ml-4 mb-2">
-                合計　￥ <%= @entry.subtotal %>
-              </div>
-              <%= link_to "Delete", entry_path(@entry.id), method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger d-grid gap-2 col-6 mx-auto" %>
+<!--<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">-->
+<!--  <#%= flash[:notice] %>-->
+<!--</div>-->
+<!--<div class="container">-->
+<!--  <h1>Entry</h1>-->
+<!--　 <div class="row">-->
+<!--　  <div class="col-md-8 offset-md-1 col-sm-10 mx-2 mx-sm-auto">-->
+<!--      <div class="card mx-auto my-4 shadow-lg">-->
+<!--        <div class="card-body m-3">-->
+<!--          <div class="row">-->
+<!--            <div class="col">-->
+<!--              <h3 class="card-name mx-3 mt-2"><i class="far fa-calendar-check"></i>-->
+<!--                <#%= @entry.event.title %>-->
+<!--              </h3>-->
+<!--              <#%= image_tag @entry.event.image, fill: [200, 200], format: 'jpeg', class: "card-img-top mx-auto p-2"; %>-->
+<!--              <div class="card-price ml-4 mt-4"><i class="fa-solid fa-coins"></i>-->
+<!--                ￥ <#%= @entry.event.with_tax_price %>-->
+<!--              </div>-->
+<!--              <div class="my-3">-->
+<!--                <#%= form_with model: @entry, url: entry_path(@entry.id), local: true do |f| %>-->
+<!--      　        　  <#%= f.select :amount, *[1..10] %>-->
+<!--                  <#%= f.submit "Edit", class: "btn btn-success" %>-->
+<!--                <#% end %>-->
+<!--              </div>-->
+<!--              <div class="card-subtotal ml-4 mb-2">-->
+<!--                合計　￥ <#%= @entry.subtotal %>-->
+<!--              </div>-->
+<!--              <#%= link_to "Delete", entry_path(@entry.id), method: :delete , "data-confirm" => "商品を削除しますか？" , class: "btn btn-danger d-grid gap-2 col-6 mx-auto" %>-->
               
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

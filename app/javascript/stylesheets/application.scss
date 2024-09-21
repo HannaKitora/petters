@@ -35,3 +35,8 @@ flex-wrap: wrap;
     color: red;
   }
 }
+
+#map {
+  width: 100%;
+  height: calc(100vh - 88px - 179px);
+}

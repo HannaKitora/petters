@@ -8,6 +8,7 @@
         <h3><%= @event.title %></h3>
         <%= image_tag @event.get_image, size: "auto" %>
         <p class="date mt-2">Date: <%= @event.date %></p>
+        <p class="address mt-2">Address: <%= @event.event_address %></p>
         <p class="price mt-2">Price: ￥ <%= @event.price %></p>
         <p class="detail"><%= @event.detail %></p>
         <%= link_to "Edit", edit_admin_event_path(@event.id), class: 'btn btn-outline-primary my-2' %>

@@ -1,0 +1,40 @@
+<h1>Order#new</h1>
+<%= form_with model: @order, url: '/orders/confirm', local: true do |f| %>
+  <h4>支払方法</h4>
+  <%= f.radio_button :payment_method, "credit_card" %>
+  <%= f.label :payment_method, "クレジットカード" %>
+  <%= f.radio_button :payment_method, "transfer" %>
+  <%= f.label :payment_method, "銀行振込" %>
+  
+  <h3>住所</h3>
+  
+  <p><%= f.radio_button :select_address, 0 %>住所</p>
+  <%= current_user.full_address %>
+  
+  <h5>登録済住所</h5>
+  <p><%= f.radio_button :select_address, 1 %>登録済住所</p>
+  <p><%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :full_address) %></p>
+  
+  <h5>新しい住所</h5>
+  <p><%= f.radio_button :select_address, 2 %>新しい住所</p>
+  
+  <table>
+    <tr>
+      <td>郵便番号</td>
+      <td><%= f.text_field :postal_code %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td><%= f.text_field :address %></td>
+    </tr>
+    <h5>
+      <td>フルネーム</td>
+      <td><%= f.text_field :username %></td>
+    </h5>
+  </table>
+  
+  <%= f.submit "確認画面へ進む" %>
+  
+<% end %>
+    
+    

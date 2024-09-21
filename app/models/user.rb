@@ -15,6 +15,8 @@ class User < ApplicationRecord
   
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id"
   has_many :followings, through: :relationships, source: :followed
+  has_many :orders
+  has_many :addresses
   
   GUEST_USER_EMAIL = "guest@example.com"
 

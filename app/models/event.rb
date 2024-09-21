@@ -1,8 +1,13 @@
 class Event < ApplicationRecord
   has_one_attached :image
   has_many :entries, dependent: :destroy
+  has_many :order_details, dependent: :destroy
   validates :price, numericality: { only_integer: true }, presence: true 
   validates :date, presence: true
+  validates :event_address, presence: true
+  
+  geocoded_by :event_address
+  after_validation :geocode
   
   def get_image
     unless image.attached?

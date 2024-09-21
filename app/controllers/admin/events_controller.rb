@@ -50,7 +50,7 @@ class Admin::EventsController < ApplicationController
   private
   
   def event_params
-    params.require(:event).permit(:name, :image, :price, :detail, :date)
+    params.require(:event).permit(:name, :image, :price, :detail, :date, :event_address)
   end
 
 end

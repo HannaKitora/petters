@@ -63,6 +63,8 @@ gem 'kaminari'
 gem "enum_help"
 
 gem 'dotenv-rails'
+gem 'geocoder'
+
 group :production do
   gem 'mysql2'
 end
@@ -72,6 +74,4 @@ gem 'jquery-rails'
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-
-gem "enum_help"
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :map, only: [:show]
   get 'calendar' => 'calendar#index'
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: 'admin/sessions'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     resources :users, only: [:destroy]
     resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :entries, only: [:index, :destroy]
+    resources :orders, only: [:index]
   end
   
   scope module: :public do
@@ -41,6 +43,8 @@ Rails.application.routes.draw do
     post '/entries/thanks', to: 'public/entries#thanks'
     # get 'entries/thanks'
     resources :entries, only: [:create, :index, :destroy, :update, :show]
+    resources :orders, only: [:new, :create, :confirm]
+    get '/orders/confirm' => 'orders#confirm'
   end
   resources :notifications, only: [:update]
   get "/search" => "searches#search"
