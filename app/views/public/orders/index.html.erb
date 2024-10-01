@@ -1,0 +1,40 @@
+<div class="col-md-12 col-sm-10 mx-2 mx-sm-auto">
+  <%= flash[:notice] %>
+</div>
+<div class="container">
+  <div class="row">
+    <h1>Orders</h1>
+
+    <table class="table text-center">
+      <tr class="table-active">
+        
+        <th>Event</th>
+        <th>Date</th>
+        <th>Price</th>
+        <th>amounts</th>
+        <th>Subtotal</th>
+      </tr>
+      <tbody>
+        <% @entries.each do |entry| %>
+          <tr>
+            <td>
+          
+              <%= link_to entry_path(entry) do %>
+                <%= entry.event.title %>
+              <% end %>
+            </td>
+            <td><%= entry.event.date %></td>
+            <td><%= entry.event.with_tax_price %></td>
+            <td>
+              <%= entry.amount %>
+            </td>
+            <td>
+              <%= entry.subtotal %>
+            </td>
+          </tr>
+          <!--<#% @sum += event.entry.subtotal %>-->
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

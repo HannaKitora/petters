@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2024_09_15_002733) do
     t.integer "user_id"
     t.string "postal_code"
     t.string "address"
+    t.string "address_username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -39,12 +39,15 @@ Rails.application.routes.draw do
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
     get '/events/index', to: 'events#index', defaults: { format: 'json' }
-    # get 'entries/confirm'
-    post '/entries/thanks', to: 'public/entries#thanks'
-    # get 'entries/thanks'
-    resources :entries, only: [:create, :index, :destroy, :update, :show]
-    resources :orders, only: [:new, :create, :confirm]
-    get '/orders/confirm' => 'orders#confirm'
+    resources :entries, only: [:create, :index, :destroy, :update, :show] do
+      member do
+        patch 'increase'
+        patch 'decrease'
+      end
+    end
+    resources :orders, only: [:new, :create]
+    post '/orders/confirm' => 'orders#confirm'
+    get '/orders/thanks' => 'orders#thanks'
   end
   resources :notifications, only: [:update]
   get "/search" => "searches#search"

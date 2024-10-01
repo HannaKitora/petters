@@ -9,24 +9,33 @@ class Public::EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
     @entry.user_id = current_user.id
-    @entry.event_id = entry_params[:event_id]
-    if @entry.save
-      current_user.entries.each do |entry|
-        @entry = Entry.new
-        @entry.event_id = @entry.id
-        @entry.amount = entry.amount
-        @entry.tax_included_price = (entry.event.price*1.1).floor
-        @entry.save
-      end
-      render :thanks
+    @event = @entry.event_id
+    if @entry.save!
+      # redirect_to new_order_path(@entry)
+      redirect_to entry_path(@entry)
     else
       flash[:notice] = 'Your entry has been failed!'
-      redirect_to entries_path
+      redirect_to events_path
     end
   end
+  
+  # def increase
+  #   @entry.increment!(:amount, 1)
+  #   redirect_to request.referer, notice: 'Successfully updated your cart'
+  # end
 
+  # def decrease
+  #   decrease_or_destroy(@entry)
+  #   redirect_to request.referer, notice: 'Successfully updated your cart'
+  # end
+
+  def show
+    @entry = Entry.find(params[:id])
+    @event = Event.find(@entry.event_id)
+    # redirect_to new_order_path
+  end
+  
   def index
-    
     @entry = Entry.new
     @entries = current_user.entries
     # date = params[:event_date]
@@ -36,11 +45,6 @@ class Public::EntriesController < ApplicationController
     # @events = Event.sort_by_date(target_event_ids)
     # @events = Event.where("event_date >= ?", Date.today).order(event_date: :asc)
     # @sum = 0
-  end
-
-  def show
-    # @event = Event.find(params[:id])
-    @entry = Entry.find(params[:id])
   end
   
   def update
@@ -64,12 +68,8 @@ class Public::EntriesController < ApplicationController
     # redirect_back(fallback_location: root_path)
   end
 
-  def thanks
-    flash[:notice] = "You have entried successfully."
-  end
-
-  
   private
+  
   def entry_params
     # params.require(:entry).permit(:amount, :event_id, :user_id, :date)
     params.fetch(:entry, {}).permit(:amount, :event_id, :user_id, :event_date)
@@ -78,15 +78,5 @@ class Public::EntriesController < ApplicationController
   def event_params
     params.require(:event).permit(:event_id, :date)
   end
-
-  # def ensure_guest_user
-  #   @user = User.find(params[:user_id])
-  #   if @user.guest_user?
-  #     flash[:notice] = "ユーザー登録をお願いします。"
-  #     redirect_to user_path(current_user)
-  #   else
-      
-  #   end
-  # end
-
+  
 end

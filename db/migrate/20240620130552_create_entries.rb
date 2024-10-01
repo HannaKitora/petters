@@ -6,7 +6,6 @@ class CreateEntries < ActiveRecord::Migration[6.1]
       t.integer :amount
       t.float :tax_included_price
       t.date :event_date
-
       t.timestamps
     end
   end
