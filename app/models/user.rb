@@ -79,4 +79,8 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  def entry_empty?
+    entries.empty?
+  end
+  
 end

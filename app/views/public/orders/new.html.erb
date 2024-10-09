@@ -17,7 +17,7 @@
         <!--<#%= current_user.full_address %>-->
         
         <p><%= f.radio_button :select_address, 1 %>登録済住所</p>
-        <p><%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :full_address) %></p>
+        <p><%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :full_address) %></p>
         
         <p><%= f.radio_button :select_address, 2 %>新しい住所</p>
         
@@ -32,10 +32,15 @@
           </tr>
           <h5>
             <td>フルネーム</td>
-            <td><%= f.text_field :username %></td>
+            <td><%= f.text_field :address_username %></td>
           </h5>
         </table>
         </div>
+        
+        <%= f.hidden_field :entry_id, value: @entry_id %>
+        <%= f.hidden_field :amount, value: @amount %>
+        <%= f.hidden_field :subtotal, value: @subtotal %>
+        <%= f.hidden_field :event_id, value: @event_id %>
         
         <%= f.submit "確認画面へ進む", class: "btn btn-warning" %>
         

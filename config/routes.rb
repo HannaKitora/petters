@@ -45,7 +45,8 @@ Rails.application.routes.draw do
         patch 'decrease'
       end
     end
-    resources :orders, only: [:new, :create]
+    resources :orders, only: [:new, :create, :index, :show]
+    patch '/orders/new' => 'orders#new'
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/thanks' => 'orders#thanks'
   end

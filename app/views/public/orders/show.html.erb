@@ -9,12 +9,13 @@
         <div class="card-body m-3">
           <div class="row">
             <div class="col">
-              <h3 class="card-name mx-3 mt-2"><i class="far fa-calendar-check"></i>
-                <%= @entry.event.title %>
-              </h3>
-              <%= image_tag @entry.event.image, fill: [200, 200], format: 'jpeg', class: "card-img-top mx-auto p-2"; %>
+              <%= link_to event_path(order.events) do %>
+                <i class="far fa-calendar-check"></i>
+                <%= @order_details.event.title %>
+              <% end %>
+              <%= image_tag @order_details.event.image, fill: [200, 200], format: 'jpeg', class: "card-img-top mx-auto p-2"; %>
               <div class="card-price ml-4 mt-4"><i class="fa-solid fa-coins"></i>
-                ￥ <%= @entry.event.with_tax_price %>
+                ￥ <%= @order_details.event.with_tax_price %>
               </div>
               
             </div>

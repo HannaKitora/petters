@@ -71,7 +71,7 @@ class Public::EntriesController < ApplicationController
   private
   
   def entry_params
-    # params.require(:entry).permit(:amount, :event_id, :user_id, :date)
+    params.require(:entry).permit(:amount, :event_id, :tax_included_price, :event_data)
     params.fetch(:entry, {}).permit(:amount, :event_id, :user_id, :event_date)
   end
   

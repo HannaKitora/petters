@@ -3,10 +3,7 @@ class Public::EventsController < ApplicationController
   def index
     date = params[:date]
     @events = Event.where("date >= ?", Date.today).order(date: :asc)
-    # @events = @events.map do |event|
-    #   event.define_singleton_method(:title) { event.name }
-    #   event
-    # end
+    
     respond_to do |format|
       format.html
       format.json { render 'calendar' }
@@ -14,10 +11,10 @@ class Public::EventsController < ApplicationController
     
     respond_to do |format|
       format.html do
-        @events = Event.page(params[:page])
+        # @events = Event.page(params[:page])
       end
       format.json do
-        @events = Event.all
+        # @events = Event.all
       end
     end
   end

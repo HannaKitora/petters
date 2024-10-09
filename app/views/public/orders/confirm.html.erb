@@ -1,7 +1,7 @@
 <div class ="contianer md-mx-10 sm-mx-auto">
   <h2>Ordered Confirm</h2>
-  <div class="row">c
-    <div class="col-md-6 offset-md-1 col-sm-10 mx-2 mx-sm-auto mb-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
       <table class="table">
         <tr>
           <td>イベント</td>
@@ -16,19 +16,21 @@
             <%= @entry.event.title %>
           </td>
           <td><%= @entry.event.with_tax_price %></td>
-          <td><%= @entry.amount %></td>
-          <td><%= @entry.subtotal %></td>
+          <td><%= @amount %></td>
+          <td><%= @subtotal %></td>
+          <!--<td><#%= @entry.subtotal %></td>-->
         </tr>
       </table>
     </div>
   </div>
   
   <div class="row">
-    <div class="col-md-6 offset-md-1 col-sm-10 mx-2 mx-sm-auto">
+    <div class="col-md-6 offset-md-1 col-sm-10 mx-2 mx-sm-auto mb-5">
       <table class="table">
         <tr>
-          <td>請求金額</td>
-          <td><%= @entry.subtotal %></td>
+          <td><strong>請求金額</strong></td>
+          <td><strong>￥　<%= @subtotal %></strong></td>
+          <!--<td><#%= @entry.subtotal %></td>-->
         </tr>
       </table>
     </div>
@@ -60,10 +62,14 @@
         <%= f.hidden_field :payment_method, value:  @order.payment_method %>
         <%= f.hidden_field :postal_code, value: @order.postal_code %>
         <%= f.hidden_field :amount, value: @entry.amount %>
-        <!--<#%= f.hidden_field :subtotal, value: @entry.subtotal %>-->
+        <%= f.hidden_field :total_payment, value: @order.total_payment %>
         <%= f.hidden_field :address, value: @order.address %>
         <%= f.hidden_field :username, value: @order.username %>
         <%= f.hidden_field :status, value: "wait_payment" %>
+        <%= f.hidden_field :entry_id, value: @entry_id %>
+        <%= f.hidden_field :amount, value: @amount %>
+        <%= f.hidden_field :subtotal, value: @subtotal %>
+        <%= f.hidden_field :event_id, value: @event_id %>
         <%= f.submit "注文を確定する", class: "btn btn-warning" %>
       <% end %>
     </div>
