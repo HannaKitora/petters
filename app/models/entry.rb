@@ -4,7 +4,6 @@ class Entry < ApplicationRecord
   
   # validates :user_id, uniqueness: {scope: :event_id}
   
-  
   def subtotal
     event.with_tax_price * amount
   end

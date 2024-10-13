@@ -4,6 +4,7 @@ class OrderDetail < ApplicationRecord
   belongs_to :event
   
   
+  
   #製作ステータス
     enum manufacture_status:
         {
@@ -13,9 +14,9 @@ class OrderDetail < ApplicationRecord
           finish:3
         }
         
-  def subtotal
-    self.price * self.amount
-  end
+  # def subtotal
+  #   self.price * self.amount
+  # end
   
 
 

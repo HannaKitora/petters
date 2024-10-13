@@ -2,43 +2,31 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_user!
   
   def new
-    # byebug
     @order = Order.new
     @addresses = Address.all
     @amount = params[:entry][:amount]
     @entry_id = params[:entry][:entry_id]
     @subtotal = params[:entry][:subtotal]
-    @event_id = params[:entry][:event_id]
+    @event_id = Entry.find(params[:entry][:entry_id]).event_id
   end
   
   def create
     @order = Order.new(order_create_params)
-    # byebug
-    # redirect_to orders_confirm_path
     @amount = params[:amount]
     @entry_id = params[:entry_id]
     @subtotal = params[:subtotal]
     @event_id = order_detail_params[:event_id]
-    
-    
     @order_detail = OrderDetail.new
     @order_detail.order_id = @order.id
     @entry = Entry.find(params[:entry_id])
-    @order_details.event_id = @entry.event_id
-    @order_details.price = @entry.event.with_tax_price
-    @order_detail.subtotal = @entry.subtotal
+    @order_detail.event_id = params[:event_id]
+    @order_detail.price = @entry.event.with_tax_price
     @order_detail.amount = @entry.amount
-    @order_detail.payment_method = @order.payment_method
     @order_detail.making_status = 0
     
-    # if current_user.entry_nill?
-    #   flash[:danger] = 'カートが空です。イベントを選択してください。'
-    #   render "entries/index", status: :unprocessable_entity
-    #   return
-    # end
-    
-    @order_detail.save!
     if @order.save
+      @order_detail.order = @order
+      @order_detail.save!
       Entry.destroy_all
       render :thanks
     else
@@ -47,8 +35,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def confirm
-    # byebug
-    @order = Order.new(order_create_params)
+    @order = Order.new(order_params)
     @user = current_user
     @amount = params[:order][:amount]
     @entry_id = params[:order][:entry_id]
@@ -58,22 +45,11 @@ class Public::OrdersController < ApplicationController
                                   current_user,
                                   address_params)
     @event_id = params[:order][:event_id]
-    #if Address.find(params[:order][:address_id]).blank? && @address.save!
-      @order.user_id = current_user.id
-    #else
-      #render :new
-    #end
+    @order.user_id = current_user.id
     @order.postal_code = @address.postal_code
     @order.address = @address.full_address
     @order.username = @address.address_username
-    
-    # @entry = current_user.entries.all
     @entry = Entry.find_by(params[:entry_id])
-    
-    # if @order.save
-    #   Entry.destroy_all
-    #   # render :thanks
-    # end
   end
   
   def thanks
@@ -81,16 +57,21 @@ class Public::OrdersController < ApplicationController
   
   def index
     @orders = Order.all
-    if params[:id].present?
+    @order_details = OrderDetail.all
+    # byebug
+    if order_detail_params[:id].present?
       @order = Order.find(params[:id])
-      @order_details = @order.order_details
-    else
-      
+      # @order_detail = @order.order_details.find_by(params[:order_detail_id])
+      @order_detail.event_id = params[:event_id]
+      @order_detail.price = @entry.event.with_tax_price
+      @order_detail.amount = @entry.amount
+      @order_detail.making_status = 0
+      # @order = @order.order_detail
     end
   end
   
   def show
-    @orders = Order.all
+    @order = Order.find(params[:id])
     @order_detail = @order.order_details.find_by(params[:order_detail_id])
   end
   

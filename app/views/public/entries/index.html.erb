@@ -5,7 +5,7 @@
   <div class="row">
     <h1>Entries</h1>
     <!--<script>-->
-    <!--  let entryData = <%= raw @entries.to_json %>;-->
+    <!--  let entryData = <#%= raw @entries.to_json %>;-->
     <!--</script>-->
     <!--<div class="col-6 justify-content-center mb-5">-->
     <!--  <div id="calendar"></div>-->
@@ -23,7 +23,6 @@
         <% @entries.each do |entry| %>
           <tr>
             <td>
-          
               <%= link_to entry_path(entry) do %>
                 <%= entry.event.title %>
               <% end %>

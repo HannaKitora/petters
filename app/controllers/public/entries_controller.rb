@@ -18,16 +18,6 @@ class Public::EntriesController < ApplicationController
       redirect_to events_path
     end
   end
-  
-  # def increase
-  #   @entry.increment!(:amount, 1)
-  #   redirect_to request.referer, notice: 'Successfully updated your cart'
-  # end
-
-  # def decrease
-  #   decrease_or_destroy(@entry)
-  #   redirect_to request.referer, notice: 'Successfully updated your cart'
-  # end
 
   def show
     @entry = Entry.find(params[:id])
