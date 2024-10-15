@@ -1,0 +1,47 @@
+<%= render "admin/layouts/header" %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      
+      <h1>Orders</h1>
+     <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Event</th>
+            <th scope="col">Date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_details.each do |order_detail| %>
+            <tr>
+              <td>
+                <%= order_detail.order.user.name %>
+              </td>
+              <td scope="row">
+                <%= link_to admin_event_path(order_detail.event_id) do %>
+                  <%= order_detail.event.title %>
+                <% end %>
+              </td>
+              <td>
+                <%= order_detail.event.date %>
+              </td>
+              <td>
+                ￥<%= order_detail.price %>
+              </td>
+              <td>
+                <%= order_detail.amount %>
+              </td>
+              <td>
+                <%= order_detail.making_status %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+       </div>
+  </div>
+</div>

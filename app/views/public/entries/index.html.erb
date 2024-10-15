@@ -4,14 +4,8 @@
 <div class="container">
   <div class="row">
     <h1>Entries</h1>
-    <!--<script>-->
-    <!--  let entryData = <#%= raw @entries.to_json %>;-->
-    <!--</script>-->
-    <!--<div class="col-6 justify-content-center mb-5">-->
-    <!--  <div id="calendar"></div>-->
-    <!--</div>-->
-    
-    <table class="table text-center">
+ 
+    <table class="table border text-center">
       <tr class="table-active">
         <th>Event</th>
         <th>Date</th>
@@ -20,24 +14,28 @@
         <th>Subtotal</th>
       </tr>
       <tbody>
-        <% @entries.each do |entry| %>
+        <% if @entries.present? %>
+          <% @entries.each do |entry| %>
+            <tr>
+              <td>
+                <%= link_to entry_path(entry) do %>
+                  <%= entry.event.title %>
+                <% end %>
+              </td>
+              <td><%= entry.event.date %></td>
+              <td><%= entry.event.with_tax_price %></td>
+              <td>
+                <%= entry.amount %>
+              </td>
+              <td>
+                <%= entry.tax_included_price %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
           <tr>
-            <td>
-              <%= link_to entry_path(entry) do %>
-                <%= entry.event.title %>
-              <% end %>
-            </td>
-            <td><%= entry.event.date %></td>
-            <td><%= entry.event.with_tax_price %></td>
-            <td>
-              <%= entry.amount %>
-            </td>
-            <td>
-              <%= entry.tax_included_price %>
-              <!--<#%= entry.subtotal %>-->
-            </td>
+            <td colspan="5">Entry Not found.</td>
           </tr>
-          <!--<#% @sum += event.entry.subtotal %>-->
         <% end %>
       </tbody>
     </table>
