@@ -3,18 +3,9 @@
     <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto">
       <h1>Post Edit</h1>
       
-
-<!--<#% if @pet.errors.any? %>-->
-<!--  <#%= @pet.errors.count %>error prohibited this obj from being saved:-->
-<!--  <ul>-->
-<!--    <#% @pet.errors.full_messages.each do |message| %>-->
-<!--      <li><#%= message %></li>-->
-<!--    <#% end %>-->
-<!--  </ul>-->
-<!--<#% end %>-->
-        <%= image_tag @pet.get_image(60,60), class: "card-img-top mx-auto p-2" %>
-        
-        <%= form_with model: @pet do |f| %>
+      <%= image_tag @pet.get_image(60,60), class: "card-img-top mx-auto p-2" %>
+      
+      <%= form_with model: @pet do |f| %>
 
         <label for="inputName">Name</label>
         <br>

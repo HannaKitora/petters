@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     patch '/orders/new' => 'orders#new'
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/thanks' => 'orders#thanks'
+    resources :addresses, only: [:index, :edit, :update]
   end
   resources :notifications, only: [:update]
   get "/search" => "searches#search"

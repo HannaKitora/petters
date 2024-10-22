@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row p-5">
+    <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto">
+      <h1>Address Edit</h1>
+      <%= form_with model: @address do |f| %>
+        <label for="inputPostalcode">Postalcode</label><br>
+        <%= f.text_field :postal_code, autofocus: true, id:"inputPostalcode" %><br>
+        <label for="inputAddress">Address</label><br>
+        <%= f.text_field :address, autofocus: true, id:"inputAddress" %><br>
+        <label for="inputAddressName">Name</label><br>
+        <%= f.text_field :address_username, autofocus: true, id:"inputAddressUsername" %><br>
+        <%= f.submit "Update Address", class: "btn btn-warning my-3" %>
+      <% end %>
+      <%= link_to "Back", addresses_path %>
+    </div>
+  </div>
+</div>

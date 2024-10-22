@@ -3,7 +3,8 @@ class Public::OrdersController < ApplicationController
   
   def new
     @order = Order.new
-    @addresses = Address.all
+    @addresses = Address.where(user_id: current_user)
+    # @addresses = Address.all
     @amount = params[:entry][:amount]
     @entry_id = params[:entry][:entry_id]
     @subtotal = params[:entry][:subtotal]
@@ -57,37 +58,36 @@ class Public::OrdersController < ApplicationController
       @order.postal_code = @address.postal_code
       @order.address = @address.address
       @order.username = @address.address_username
+      @address.save
     end
     @event_id = params[:order][:event_id]
     @order.user_id = current_user.id
     @entry = Entry.find_by(params[:entry_id])
-    # unless Address.exists?  #追記
-      # @order.postal_code = @address.postal_code
-    
-    # else
-    #   @address = Address.where(params[:address_id])
-    #   # @order.postal_code = @address.postal_code
-    #   @order.address = @address.full_address
-    #   @order.username = @address.address_username
-    # end
   end
   
   def thanks
   end
   
   def index
-    @orders = Order.all
-    @order_details = OrderDetail.all
-    # byebug
-    if order_detail_params[:id].present?
-      @order = Order.find(params[:id])
-      # @order_detail = @order.order_details.find_by(params[:order_detail_id])
-      @order_detail.event_id = params[:event_id]
-      @order_detail.price = @entry.event.with_tax_price
-      @order_detail.amount = @entry.amount
-      @order_detail.making_status = 0
-      # @order = @order.order_detail
+    current_orders = current_user.orders
+    @order_details = [] # すべてのorder_detailを格納するための配列
+    
+    # 各orderに紐づくorder_detailを取得
+    current_orders.each do |order|
+      @order_details += order.order_details
     end
+    # @order_details = OrderDetail.all
+    # if order_params[:id].present?
+    # if order_detail_params[:id].present?
+      # @order = current_user.order.find(params[:id])
+      @order_detail = OrderDetail.find_by(order_detail_params[:order_id])
+      @order_detail.event_id = params[:event_id]
+      # @entry = Entry.find_by(params[:id])
+      # @order_detail.price = @entry.subtotal
+      # @order_detail.price = @entry.event.with_tax_price
+      # @order_detail.amount = @entry.amount
+      @order_detail.making_status = 0
+    # end
   end
   
   def show
@@ -106,7 +106,7 @@ class Public::OrdersController < ApplicationController
   end
   
   def order_detail_params
-    params.permit(:event_id)
+    params.permit(:event_id, :order_id, :amount, :price)
   end
   
   def entry_params

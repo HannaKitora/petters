@@ -20,7 +20,7 @@
                 <% end %>
               </td>
               <td><%= order_detail.event.date %></td>
-              <td><%= order_detail.event.with_tax_price %></td>
+              <td><%= order_detail.price %></td>
               <td><%= order_detail.amount %></td>
               <td><%= total_payment = (order_detail.price.to_i * order_detail.amount.to_i) %></td>
             </tr>
