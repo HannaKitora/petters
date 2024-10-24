@@ -8,6 +8,6 @@ json.data do
       json.event_address event.event_address
       json.latitude event.latitude
       json.longitude event.longitude
-    end  
+    end
   end
 end

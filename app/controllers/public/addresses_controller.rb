@@ -6,12 +6,11 @@ class Public::AddressesController < ApplicationController
     @addresses = Address.where(user_id: current_user.id)
     @address = Address.new
   end
-  
+
   def edit
     @address = Address.find(params[:id])
-    
   end
-  
+
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
@@ -19,17 +18,16 @@ class Public::AddressesController < ApplicationController
       redirect_to addresses_path
     end
   end
-  
+
   private
-  
-  def address_params
-    params.require(:address).permit(:postal_code, :addresss, :address_username)
-  end
-  
-  def ensure_login_user
-    unless user_signed_in?
-      flash[:alert] = "ログインが必要です"
-      redirect_to root_path
+    def address_params
+      params.require(:address).permit(:postal_code, :addresss, :address_username)
     end
-  end
+
+    def ensure_login_user
+      unless user_signed_in?
+        flash[:alert] = "ログインが必要です"
+        redirect_to root_path
+      end
+    end
 end

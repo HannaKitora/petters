@@ -1,11 +1,11 @@
 class Admin::EventsController < ApplicationController
-  layout 'admin'
+  layout "admin"
   # before_action :authenticate_admin!
-  
+
   def new
     @event = Event.new
   end
-  
+
   def create
     @event = Event.new(event_params)
     if @event.save
@@ -17,19 +17,18 @@ class Admin::EventsController < ApplicationController
   end
 
   def index
-    date = params[:date]
+    params[:date]
     @events = Event.where("date >= ?", Date.today).order(date: :asc)
   end
 
   def edit
     @event = Event.find(params[:id])
   end
-  
+
   def show
     @event = Event.find(params[:id])
-   
   end
-  
+
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
@@ -46,11 +45,9 @@ class Admin::EventsController < ApplicationController
     @events.destroy
     redirect_to admin_events_path
   end
-  
-  private
-  
-  def event_params
-    params.require(:event).permit(:title, :image, :price, :detail, :date, :event_address)
-  end
 
+  private
+    def event_params
+      params.require(:event).permit(:title, :image, :price, :detail, :date, :event_address)
+    end
 end

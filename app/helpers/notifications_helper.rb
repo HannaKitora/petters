@@ -7,5 +7,4 @@ module NotificationsHelper
       "#{notification.notifiable.user.name}さんが#{notification.notifiable.pet.name}にコメントしました"
     end
   end
-  
 end

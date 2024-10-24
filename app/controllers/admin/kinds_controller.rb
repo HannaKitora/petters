@@ -1,12 +1,11 @@
 class Admin::KindsController < ApplicationController
-  layout 'admin'
-  
+  layout "admin"
+
   def new
     @kind = Kind.new
     @kinds = Kind.all
-    
   end
-  
+
   def create
     @kind = Kind.new(kind_params)
     if @kind.save
@@ -17,16 +16,16 @@ class Admin::KindsController < ApplicationController
       render :new
     end
   end
-  
+
   def index
     @kinds = Kind.all
     # @kind = Kind.find(params[:id])
   end
-  
+
   def edit
     @kind = Kind.find(params[:id])
   end
-  
+
   def update
     @kind = Kind.find(params[:id])
     if @kind.update(kind_params)
@@ -37,7 +36,7 @@ class Admin::KindsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     @kinds = Kind.find(params[:id])
     @kinds.destroy
@@ -46,9 +45,7 @@ class Admin::KindsController < ApplicationController
   end
 
   private
-
-  def kind_params
-    params.require(:kind).permit(:kind)
-  end
-
+    def kind_params
+      params.require(:kind).permit(:kind)
+    end
 end

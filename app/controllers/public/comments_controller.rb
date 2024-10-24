@@ -1,5 +1,4 @@
 class Public::CommentsController < ApplicationController
-  
   def create
     pet = Pet.find(params[:pet_id])
     comment = current_user.comments.new(comment_params)
@@ -7,19 +6,18 @@ class Public::CommentsController < ApplicationController
     comment.save
     redirect_to pet_path(pet)
   end
-  
+
   def destroy
     Comment.find(params[:id]).destroy
     redirect_to pet_path(params[:pet_id])
   end
-  
+
   private
-  
-  # def pet_params
-  #   params.require(:comment).permit(:comment)
-  # end
-  
-  def comment_params
-    params.require(:comment).permit(:comment_content, :pet_id)
-  end
+    # def pet_params
+    #   params.require(:comment).permit(:comment)
+    # end
+
+    def comment_params
+      params.require(:comment).permit(:comment_content, :pet_id)
+    end
 end

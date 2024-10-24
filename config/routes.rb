@@ -1,29 +1,29 @@
 Rails.application.routes.draw do
   resource :map, only: [:show]
-  get 'calendar' => 'calendar#index'
+  get "calendar" => "calendar#index"
   devise_for :admin, skip: [:registrations, :password], controllers: {
-    sessions: 'admin/sessions'
+    sessions: "admin/sessions"
   }
   namespace :admin do
-    get 'dashboards', to: 'dashboards#index'
+    get "dashboards", to: "dashboards#index"
     resources :kinds
     resources :users, only: [:destroy]
     resources :events, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :entries, only: [:index, :destroy]
     resources :orders, only: [:index]
   end
-  
+
   scope module: :public do
     devise_for :users
     devise_scope :user do
       post "users/guest_sign_in", to: "sessions#guest_sign_in"
     end
-    root to: 'homes#top'
+    root to: "homes#top"
     get "/homes/about" => "homes#about", as: "about"
-    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe' #退会確認画面
-    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal' #論理削除
+    get "/users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe" # 退会確認画面
+    patch "/users/:id/withdrawal" => "users#withdrawal", as: "withdrawal" # 論理削除
     get "/homes/goodbye" => "homes#goodbye", as: "goodbye"
-    
+
     resources :pets, only: [:new, :create, :index, :show, :destroy] do
       resource :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
@@ -33,22 +33,22 @@ Rails.application.routes.draw do
         get :favorites
       end
       resource :relationships, only: [:create, :destroy]
-      get 'followings' => 'relationships#followings',as: 'followings'
-      get 'followers' => 'relationships#followers', as: 'followers'
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
     end
     resources :pets, only: [:new, :index, :show, :edit, :destroy, :create, :update]
     resources :events, only: [:index, :show]
-    get '/events/index', to: 'events#index', defaults: { format: 'json' }
+    get "/events/index", to: "events#index", defaults: { format: "json" }
     resources :entries, only: [:create, :index, :destroy, :update, :show] do
       member do
-        patch 'increase'
-        patch 'decrease'
+        patch "increase"
+        patch "decrease"
       end
     end
     resources :orders, only: [:new, :create, :index, :show]
-    patch '/orders/new' => 'orders#new'
-    post '/orders/confirm' => 'orders#confirm'
-    get '/orders/thanks' => 'orders#thanks'
+    patch "/orders/new" => "orders#new"
+    post "/orders/confirm" => "orders#confirm"
+    get "/orders/thanks" => "orders#thanks"
     resources :addresses, only: [:index, :edit, :update]
   end
   resources :notifications, only: [:update]
