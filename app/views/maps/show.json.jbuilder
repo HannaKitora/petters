@@ -6,8 +6,6 @@ json.data do
       json.title event.title
       json.detail event.detail
       json.event_address event.event_address
-      json.data event.data
-      json.price event.price
       json.latitude event.latitude
       json.longitude event.longitude
     end

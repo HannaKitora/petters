@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resource :map, only: [:show]
+  resources :maps, only: [:show]
   get "calendar" => "calendar#index"
   devise_for :admin, skip: [:registrations, :password], controllers: {
     sessions: "admin/sessions"

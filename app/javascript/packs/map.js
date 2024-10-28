@@ -19,7 +19,8 @@ async function initMap() {
     mapTypeControl: false
   });
   try {
-    const response = await fetch("/events.json");
+    const mapid = $('#map').data('mapid');
+    const response = await fetch(`/maps/${mapid}.json`);
     if (!response.ok) throw new Error('Network response was not ok');
 
     const { data: { items } } = await response.json();
@@ -51,8 +52,6 @@ async function initMap() {
           <div>
             <h1 class="h4 font-weight-bold">${title}</h1>
             <p class="text-muted">${eventAddress}</p>
-            <p class="lead">${date}</p>
-            <p class="lead">${price}</p>
             <p class="lead">${detail}</p>
           </div>
         </div>
@@ -70,7 +69,7 @@ async function initMap() {
         })
       });
       
-      
+      map.setCenter({lat: latitude, lng: longitude})
       
     });
   } catch (error) {
