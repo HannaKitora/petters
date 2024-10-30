@@ -79,13 +79,13 @@ class Public::OrdersController < ApplicationController
     # if order_params[:id].present?
     # if order_detail_params[:id].present?
     # @order = current_user.order.find(params[:id])
-    @order_detail = OrderDetail.find_by(order_detail_params[:order_id])
-    @order_detail.event_id = params[:event_id]
+    # @order_detail = OrderDetail.find_by(order_detail_params[:order_id])
+    # @order_detail.event_id = params[:event_id]
     # @entry = Entry.find_by(params[:id])
     # @order_detail.price = @entry.subtotal
     # @order_detail.price = @entry.event.with_tax_price
     # @order_detail.amount = @entry.amount
-    @order_detail.making_status = 0
+    # @order_detail.making_status = 0
     # end
   end
 
